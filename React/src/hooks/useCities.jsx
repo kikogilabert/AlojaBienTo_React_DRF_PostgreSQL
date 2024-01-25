@@ -25,7 +25,8 @@ const addCity = useCallback(data => {
     let city_data = {
         name: data.name,
         state: data.state,
-        country: data.country
+        country: data.country,
+        image: data.image
     }
     // console.log(data);
     console.log(city_data);
@@ -42,34 +43,35 @@ const addCity = useCallback(data => {
             }
         , []);
 
-        const useDeleteCity = (id) => {
-            CitiesService.deleteCity(id)
+        const useDeleteCity = (slug) => {
+            CitiesService.deleteCity(slug)
             .then(({ data, status }) => {
-                // console.log(data);  
+                console.log(data);  
                 // if (status === 200) {
                     // toast.success(data.data);
-                    setCities(cities.filter(cities => cities.id !== id));
+                    setCities(cities.filter(cities => cities.slug !== slug));
                 // }
             })
             .catch(e => console.error(e));
         }
         
-        const useUpdateCity = useCallback((id, data) => {
+        const useUpdateCity = useCallback((slug, data) => {
         
             let city_data = {
                 name: data.name,
                 state: data.state,
-                country: data.country
+                country: data.country,
+                image: data.image
             }
     
             // console.log(city_data);
-            CitiesService.updateCity(id, city_data)
+            CitiesService.updateCity(slug, city_data)
                 .then(({ data, status }) => {
                         console.log(status);
                         console.log(data);
                     if (status === 200) {
                         let old_cities = [...cities];
-                        const index = old_cities.findIndex(city => city.id === id);
+                        const index = old_cities.findIndex(city => city.slug === slug);
                         if (index !== -1) {
                             old_cities[index] = data;
                             setCities(old_cities);

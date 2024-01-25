@@ -6,21 +6,21 @@ const CitiesService = {
         return api().get('/cities');
     },
 
-    getOneCity(id) {
-        return api().get(`cities/${id}`);
+    getOneCity(slug) {
+        return api().get(`cities/${slug}`);
     },
 
     createCity(data) {
         return api().post('/cities/', data);
     },
 
-    updateCity(id, data) {
-        return api().put(`cities/${id}`, data);
+    updateCity(slug, data) {
+        return api().put(`cities/${slug}`, data);
     },
 
     
-    deleteCity(id) {
-        return api().delete(`cities/${id}`);
+    deleteCity(slug) {
+        return api().delete(`cities/${slug}`);
     },
 };
 export default CitiesService;

@@ -8,15 +8,15 @@ export function ListCities() {
   const navigate = useNavigate();
 
   
-  function deleteCity(id) {
+  function deleteCity(slug) {
     // console.log(id);
-    useDeleteCity(id);
+    useDeleteCity(slug);
 
   }
 
-  function updateCity(id) {
-    // console.log(id);
-    navigate(`/cities-update/${id}`);
+  function updateCity(slug) {
+    console.log(slug);
+    navigate(`/cities-update/${slug}`);
   }
 
 
@@ -30,6 +30,7 @@ export function ListCities() {
               <th scope="col">Name</th>
               <th scope="col">State</th>
               <th scope="col">Country</th>
+              <th scope="col">Image</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -39,8 +40,10 @@ export function ListCities() {
           <td>{city.name}</td>
           <td>{city.state}</td>
           <td>{city.country}</td>
-          <td><button className="btn btn-danger" onClick={() => deleteCity(city.id)}>DELETE</button> |
-              <button className="btn btn-danger" onClick={() => updateCity(city.id)}>UPDATE</button></td>
+          <td>{city.image}</td>
+          
+          <td><button className="btn btn-danger" onClick={() => deleteCity(city.slug)}>DELETE</button> |
+              <button className="btn btn-danger" onClick={() => updateCity(city.slug)}>UPDATE</button></td>
         </tr>
       ))}
           </tbody>
