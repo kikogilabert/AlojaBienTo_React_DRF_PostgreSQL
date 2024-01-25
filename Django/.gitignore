@@ -1,0 +1,115 @@
+venv
+# Django #
+############
+*.log
+*.pot
+*.pyc
+*.pyo
+*.rej
+*~
+
+# Database #
+############
+*.sqlite3
+
+# Backup #
+###########
+*.bak
+
+# If you are using PyCharm #
+#############################
+.idea/
+
+# If you are using VS Code #
+############################
+.vscode/
+
+# Python #
+###########
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging #
+############################
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Installer logs #
+##################
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports #
+################################
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook #
+####################
+.ipynb_checkpoints
+
+# Environment #
+###############
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# PyBuilder #
+#############
+target/
+
+# Spyder #
+##########
+.spyderproject
+.spyproject
+
+# Rope #
+########
+.ropeproject
+
+# mkdocs documentation #
+########################
+/site
+
+# mypy #
+########
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker #
+#####################
+.pyre/
