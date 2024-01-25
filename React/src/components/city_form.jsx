@@ -5,6 +5,7 @@ const CityForm = ({ onAddCity, updatedCity }) => {
     const [name, setCity] = useState(updatedCity ? updatedCity.name : '');
     const [state, setState] = useState(updatedCity ? updatedCity.state : '');
     const [country, setCountry] = useState(updatedCity ? updatedCity.country : '');
+    const [image, setImage] = useState(updatedCity ? updatedCity.image : '');
     const [isUpdate, setIsUpdate] = useState(false);
 
     useEffect(() => {
@@ -12,6 +13,7 @@ const CityForm = ({ onAddCity, updatedCity }) => {
             setCity(updatedCity.name);
             setState(updatedCity.state );
             setCountry(updatedCity.country);
+            setImage(updatedCity.image);
             setIsUpdate(true);
         }
         }, [updatedCity]);
@@ -29,22 +31,20 @@ const CityForm = ({ onAddCity, updatedCity }) => {
         setCountry(e.target.value);
         };
 
+        const handleImageChange = (e) => {
+            setImage(e.target.value);
+            };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         if(isUpdate === true){
-            onAddCity({ name, state, country }, updatedCity.id);
+            onAddCity({ name, state, country, image }, updatedCity.id);
             setIsUpdate(false);
         }else{
-            onAddCity({ name, state, country });
+            onAddCity({ name, state, country, image });
 
         }
     };
-
-    // const SetValues = (e) => {
-    //     setCity(e.target.value);
-    //     setState(e.target.value);
-    //     setCountry(e.target.value);
-    // };
     
 
     return (
@@ -61,6 +61,11 @@ const CityForm = ({ onAddCity, updatedCity }) => {
             <label>
                 Country:
                 <input type="text" value={country} onChange={handleCountryChange}/>
+            </label>
+            <br />
+            <label>
+                Image:
+                <input type="text" value={image} onChange={handleImageChange}/>
             </label>
             <br />
             <button type="submit">Add City</button>
