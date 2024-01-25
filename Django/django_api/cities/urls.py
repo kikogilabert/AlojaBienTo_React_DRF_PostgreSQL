@@ -21,10 +21,10 @@ urlpatterns = [
     path('zones/<str:slug_city>', ZoneView.as_view({'get': 'getAllZonesByCity'})),
     
     #Rutas CRUD Apartments
-    path('apartments/', ApartmentView.as_view({'post': 'post'})),
+    path('apartments/', ApartmentView.as_view({'get': 'getAllApartments'})),
     path('apartments/<str:slug_apartment>', ApartmentView.as_view({'get': 'getOneApartment'})),
+    path('apartments/zone/<str:slug_zone>', ApartmentView.as_view({'get': 'getApartmentsByZone'})),
+    path('apartments/', ApartmentView.as_view({'post': 'post'})),
     path('apartments/<str:slug_apartment>', ApartmentView.as_view({'delete': 'delete'})),
     path('apartments/<str:slug_apartment>', ApartmentView.as_view({'put': 'put'})),
-    path('apartments/', ApartmentView.as_view({'get': 'getAllApartments'})),
-    path('apartments/zone/<str:slug_zone>', ApartmentView.as_view({'get': 'getApartmentsByZone'})),
 ]
