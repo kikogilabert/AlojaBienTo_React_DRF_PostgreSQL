@@ -6,22 +6,10 @@ import HomeCSS from  './Home.module.css';
 export function Home() {
     return (
             <div>
-              {/* <!-- Navbar (sit on top) --> */}
-              <div className="w3-top">
-                <div className="w3-bar w3-white w3-wide w3-padding w3-card">
-                  <a href="#home" className="w3-bar-item w3-button"><b>BR</b> Architects</a>
-                  {/* <!-- Float links to the right. Hide them on small screens --> */}
-                  <div className="w3-right w3-hide-small">
-                    <a href="#projects" className="w3-bar-item w3-button">Projects</a>
-                    <a href="#about" className="w3-bar-item w3-button">About</a>
-                    <a href="#contact" className="w3-bar-item w3-button">Contact</a>
-                  </div>
-                </div>
-              </div>
         
               {/* <!-- Header --> */}
               <header className="w3-display-container w3-content w3-wide" style={{ maxWidth: '1500px' }} id="home">
-                <img className="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800" />
+                <img className="w3-image" src="https://www.w3schools.com/w3images/architect.jpg" alt="Architecture" width="1500" height="800" />
                 <div className="w3-display-middle w3-margin-top w3-center">
                   <h1 className="w3-xxlarge w3-text-white">
                     <span className="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span className="w3-hide-small w3-text-light-grey">Architects</span>
@@ -145,12 +133,7 @@ export function Home() {
                 {/* <!-- Image of location/map --> */}
                 <div className="w3-container">
                   <img src="/w3images/map.jpg" className="w3-image" width="100%"/>
-                </div>
-        
-              {/* <!-- Footer --> */}
-              <footer className="w3-center w3-black w3-padding-16">
-                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" className="w3-hover-text-green">w3.css</a></p>
-              </footer>
+                </div>            
             </div>
           );
 }

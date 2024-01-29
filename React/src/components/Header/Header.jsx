@@ -7,17 +7,22 @@ export default function Header() {
     const redirects = {
         home: () => navigate('/home'),
         cities: () => navigate('/cities'),
-        create_city: () => navigate('/cities-create'),
+        zones: () => navigate('/zones'),
     }
     
     return (
-        <main>
-            <nav className= {HeaderCSS.header}>
-                <ul className={HeaderCSS.ulmenu} >
-                    <li className={HeaderCSS.menu}  onClick={() => redirects.home()}>Home</li>
-                    <li className={HeaderCSS.menu} onClick={() => redirects.cities()}>Cities</li>
-                </ul>
-            </nav>
-        </main>
+        
+    <div className="w3-top">
+        <div className="w3-bar w3-white w3-wide w3-padding w3-card">
+        <a onClick={() => redirects.home()} className="w3-bar-item w3-button"><b>BR</b> Architects</a>
+            <div className="w3-right w3-hide-small">
+                <a  onClick={() => redirects.home()} className="w3-bar-item w3-button">Home</a>
+                <a  onClick={() => redirects.cities()} className="w3-bar-item w3-button">Cities</a>
+                <a onClick={() => redirects.zones()} className="w3-bar-item w3-button">Zones</a>
+            </div>
+        </div>
+    </div>
+
+      
     )
 }
