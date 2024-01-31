@@ -2,7 +2,6 @@ import React from 'react';
 import { useCities } from '../../../hooks/useCities';
 import CityForm from '../../../components/city_form';
 
-
 export function AddCity() {
   const {cities, addCity} = useCities();
   

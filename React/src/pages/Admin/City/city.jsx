@@ -15,7 +15,7 @@ export default function city() {
     const {cities, setCities, addCity} = useCities();
     const navigate = useNavigate();
     const redirects = { 
-        create: () => navigate('/cities-create'),
+        create: () => navigate('/admin-cities-create'),
     }
 
     useEffect(() => {
@@ -28,7 +28,6 @@ export default function city() {
                 console.log(e);
             });
     }, []);
-
      //ADD CITY
     const emit_data = (cityData) => {
         console.log(cityData);

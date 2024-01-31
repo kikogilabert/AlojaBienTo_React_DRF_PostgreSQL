@@ -15,6 +15,7 @@ const UpdateCity = () => {
 
 
     useEffect(() => {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
         useOneCity(id);
     }, [id, useOneCity]);
    
