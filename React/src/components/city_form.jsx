@@ -18,7 +18,6 @@ const CityForm = ({ onAddCity, updatedCity }) => {
         }
         }, [updatedCity]);
 
-
         const handleNameChange = (e) => {
             setCity(e.target.value);
         };

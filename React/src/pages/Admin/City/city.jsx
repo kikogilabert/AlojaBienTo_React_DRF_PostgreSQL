@@ -9,7 +9,7 @@ export default function city() {
     const { cities, setCities } = useContext(CitiesContext);
     const navigate = useNavigate();
     const redirects = { 
-        create: () => navigate('/cities-create'),
+        create: () => navigate('/admin-cities-create'),
     }
 
     useEffect(() => {
@@ -22,7 +22,6 @@ export default function city() {
                 console.log(e);
             });
     }, []);
-
 
     return (
     <article>

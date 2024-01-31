@@ -1,9 +1,8 @@
 import React from 'react'
-import ListCities from '../components/Client/Cities/ListCities'
+// import ListCities from '../components/Client/Cities/ListCities'
 import HomeCSS from  './Home.module.css';
 
-
-export function Home() {
+export default function Home() {
     return (
             <div>
         
@@ -12,7 +11,7 @@ export function Home() {
                 <img className="w3-image" src="https://www.w3schools.com/w3images/architect.jpg" alt="Architecture" width="1500" height="800" />
                 <div className="w3-display-middle w3-margin-top w3-center">
                   <h1 className="w3-xxlarge w3-text-white">
-                    <span className="w3-padding w3-black w3-opacity-min"><b>BR</b></span> <span className="w3-hide-small w3-text-light-grey">Architects</span>
+                    <span className="w3-padding w3-black w3-opacity-min"><b>ABT</b></span> <span className="w3-hide-small w3-text-light-grey">AlojaBienTo</span>
                   </h1>
                 </div>
               </header>
@@ -137,4 +136,3 @@ export function Home() {
             </div>
           );
 }
-export default Home;
