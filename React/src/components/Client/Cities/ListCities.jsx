@@ -14,7 +14,6 @@ export default function ListCities({ AllCities }) {
           <CardCities key={city.id} city={city}/>
         ))}
       </div>
-      <CitiesModal show={show} handleClose={handleClose} updatedZone={oneZone} onAddZone={emit_data}/>
     </div>
   );
 };
