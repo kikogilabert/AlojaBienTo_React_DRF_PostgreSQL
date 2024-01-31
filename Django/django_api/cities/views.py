@@ -99,8 +99,9 @@ class ZoneView(viewsets.GenericViewSet):
                     city=city_2,
                     zone_image=zone_image
                 )
+                zone_serializer = ZoneSerializer(instance=zone)
 
-                return JsonResponse({'message': 'Zone created successfully'}, status=status.HTTP_201_CREATED)
+                return JsonResponse(zone_serializer.data , status=status.HTTP_201_CREATED)
 
             except City.DoesNotExist:
                 return JsonResponse({'error': 'City not found'}, status=status.HTTP_404_NOT_FOUND)

@@ -7,7 +7,7 @@ const ZonesService = {
     },
 
     getOneZone(slug) {
-        return api().get(`zones/${slug}`);
+        return api().get(`/zones/${slug}`);
     },
 
     createZone(data) {
@@ -15,7 +15,7 @@ const ZonesService = {
     },
 
     updateZone(slug, data) {
-        return api().put(`zones/${slug}`, data);
+        return api().put(`/zones/${slug}`, data);
     },
 
     

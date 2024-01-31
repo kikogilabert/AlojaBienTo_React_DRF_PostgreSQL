@@ -16,7 +16,7 @@ const useOneZone = useCallback((id) => {
     // console.log(id);
     ZonesService.getOneZone(id)
         .then(({data}) => {
-            // console.log(data);
+            console.log(data);
             setOneZone(data);
         })
         .catch(e => console.error(e));
@@ -26,26 +26,25 @@ const useOneZone = useCallback((id) => {
 //CREATE ONE ZONE
 const addZone = useCallback(data => {
     let zone_data = {
-        name: data.name,
-        state: data.state,
-        country: data.country,
-        image: data.image
+        name: data.zone_name,
+        zone_type: data.zone_type,
+        city: data.city_id,
+        zone_image: data.image
     }
     // console.log(data);
     console.log(zone_data);
 
     ZonesService.createZone(zone_data).then((data) => {            
-                console.log(data);
-                setZones([...zones, data]);
-                navigate("/zones");
+                console.log(data.data);
+                setZones([...zones, data.data]);
+                console.log(zones);
         })
         .catch(e => {
             console.error(e);
                 });
-
             }
-        , []);
-
+        , [zones]);
+// });
 
 //DELETE ONE ZONE
 const useDeleteZone = (slug) => {
@@ -65,16 +64,16 @@ const useDeleteZone = (slug) => {
 const useUpdateZone = useCallback((slug, data) => {
 
     let zone_data = {
-        name: data.name,
-        state: data.state,
-        country: data.country,
-        image: data.image
+        name: data.zone_name,
+        zone_type: data.zone_type,
+        city: data.city_id,
+        zone_image: data.image
     }
 
-    // console.log(city_data);
+    console.log(slug);
     ZonesService.updateZone(slug, zone_data)
         .then(({ data, status }) => {
-                console.log(status);
+                // console.log(status);
                 console.log(data);
             if (status === 200) {
                 let old_zones = [...zones];

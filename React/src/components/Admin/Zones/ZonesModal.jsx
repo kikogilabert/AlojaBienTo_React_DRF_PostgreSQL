@@ -3,75 +3,67 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function CreateModal({ onAddZone, show, handleClose, updatedZone}) {
-  const [zone_name, setZone_Name] = useState(updatedZone ? updatedZone.zone_name : '');
+function ZonesModal({ onAddZone, show, handleClose, updatedZone}) {
+  const [zone_name, setZone_Name] = useState(updatedZone ? updatedZone.name : '');
   const [zone_type, setZone_type] = useState(updatedZone ? updatedZone.zone_type : '');
-  const [image, setImage] = useState(updatedZone ? updatedZone.image : '');
-  const [city_id, setCity_id] = useState(updatedZone ? updatedZone.city_id : '');
+  const [image, setImage] = useState(updatedZone ? updatedZone.zone_image : '');
+  const [city_id, setCity_id] = useState(updatedZone ? updatedZone.city : '');
+  const [slug, setSlug] = useState(updatedZone ? updatedZone.slug : '');
+
   const [isUpdate, setIsUpdate] = useState(false);
+
+  const resetData = () => {
+      setZone_Name(''),
+      setZone_type(''),
+      setImage(''),
+      setCity_id('')
+  }
 
   useEffect(() => {
       if(updatedZone) {
-          setZone_Name(updatedZone.zone_name);
+          setZone_Name(updatedZone.name);
           setZone_type(updatedZone.zone_type);
-          setCity_id(updatedZone.city_id);
-          setImage(updatedZone.image);
+          setCity_id(updatedZone.city);
+          setImage(updatedZone.zone_image);
           setIsUpdate(true);
+      } else{
+        resetData();
+        setIsUpdate(false);
       }
       }, [updatedZone]);
 
   const handleSubmit = (e) => {
-    // const form = e.currentTarget;
-    // console.log(form);
-    // console.log('hola');
-    // e.preventDefault();
         if(isUpdate === true){
-            console.log("isUpdate");  
-          // onAddCity({ zone_name, zone_type, city_id, image }, updatedCity.id);
-            // setIsUpdate(false);
+            console.log("isUpdate");
+            onAddZone({ zone_name, zone_type, city_id, image }, updatedZone.id);
         }else{
-            console.log("isCreate");
-            onAddZone({ zone_name, zone_type, city_id, image  });
-
+            onAddZone({ zone_name, zone_type, city_id, image});
+            resetData();
         }
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
-
-    // setValidated(true);
   };
 
   const handleZone_nameChange = (e) => {
     setZone_Name(e.target.value);
-    // console.log(e.target.value);  
   };
 
   const handleZone_typeChange = (e) => {
     setZone_type(e.target.value);
-    // console.log(e.target.value);  
-
+    console.log(e.target.value);
   };
 
   const handleImageChange = (e) => {
     setImage(e.target.value);
-    // console.log(e.target.value);  
-
   };
 
   const handleCity_idChange = (e) => {
     setCity_id(e.target.value);
-    // console.log(e.target.value);  
-
   };
-
-
 
   return (
     <>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>ZONES</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -84,12 +76,14 @@ function CreateModal({ onAddZone, show, handleClose, updatedZone}) {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Zone Type(Pronto Select)</Form.Label>
-              <Form.Control
-                type="text" value={zone_type} onChange={handleZone_typeChange}
-                placeholder="Zone Specification"
-                
-              />
+            <Form.Label>Zone Type</Form.Label>
+            <Form.Select value={zone_type} onChange={handleZone_typeChange}>
+              <option value="" disabled>Select a zone type</option>
+              <option value="Rural">Rural</option>
+              <option value="Costa">Costa</option>
+              <option value="Centro Ciudad">Centro Ciudad</option>
+              <option value="Afueras Ciudad">Afueras Ciudad</option>
+            </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Image URL</Form.Label>
@@ -113,7 +107,7 @@ function CreateModal({ onAddZone, show, handleClose, updatedZone}) {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" type="submit" onClick={handleSubmit}>
+          <Button variant="primary" type="submit" onClick={() => { handleSubmit(); handleClose(); }}>
             Save Changes
           </Button>
         </Modal.Footer>
@@ -122,4 +116,4 @@ function CreateModal({ onAddZone, show, handleClose, updatedZone}) {
   );
 }
 
-export default CreateModal;
+export default ZonesModal;

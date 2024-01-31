@@ -29,63 +29,67 @@ const addCity = useCallback(data => {
         image: data.image
     }
     // console.log(data);
-    console.log(city_data);
+    // console.log(city_data);
 
     CitiesService.createCity(city_data).then((data) => {            
-                console.log(data);
-                setCities([...cities, data]);
-                navigate("/cities");
+                console.log(data.data);
+                setCities([...cities, data.data]);
+                // navigate("/cities");
         })
         .catch(e => {
             console.error(e);
                 });
 
             }
-        , []);
+        , [cities]);
 
-        const useDeleteCity = (slug) => {
-            CitiesService.deleteCity(slug)
-            .then(({ data, status }) => {
-                console.log(data);  
-                // if (status === 200) {
-                    // toast.success(data.data);
-                    setCities(cities.filter(cities => cities.slug !== slug));
-                // }
-            })
-            .catch(e => console.error(e));
-        }
-        
-        const useUpdateCity = useCallback((slug, data) => {
-        
-            let city_data = {
-                name: data.name,
-                state: data.state,
-                country: data.country,
-                image: data.image
-            }
+
+
+//-------------------------DELETE ONE CITY---------------------------------------------------
+const useDeleteCity = (slug) => {
     
-            // console.log(city_data);
-            CitiesService.updateCity(slug, city_data)
-                .then(({ data, status }) => {
-                        console.log(status);
-                        console.log(data);
-                    if (status === 200) {
-                        let old_cities = [...cities];
-                        const index = old_cities.findIndex(city => city.slug === slug);
-                        if (index !== -1) {
-                            old_cities[index] = data;
-                            setCities(old_cities);
-                        }
-                        navigate("/cities");
-                    }
-                })
-                .catch(e => {
-                    console.error(e);
-                    toast.error('Create station error');
-                });
-            // setIsCorrect(true);
-            // setTimeout(() => { setIsCorrect(false); }, 1000);
-        }, []);
+    CitiesService.deleteCity(slug)
+    .then(({ data, status }) => {
+        console.log(data);  
+        // if (status === 200) {
+            // toast.success(data.data);
+            setCities(cities.filter(cities => cities.slug !== slug));
+        // }
+    })
+    .catch(e => console.error(e));
+}
+
+const useUpdateCity = useCallback((slug, data) => {
+
+    let city_data = {
+        name: data.name,
+        state: data.state,
+        country: data.country,
+        image: data.image
+    }
+
+    // console.log(city_data);
+    CitiesService.updateCity(slug, city_data)
+        .then(({ data, status }) => {
+                console.log(status);
+                console.log(data);
+            if (status === 200) {
+                let old_cities = [...cities];
+                const index = old_cities.findIndex(city => city.slug === slug);
+                if (index !== -1) {
+                    old_cities[index] = data;
+                    setCities(old_cities);
+                }
+                navigate("/cities");
+            }
+        })
+        .catch(e => {
+            console.error(e);
+            toast.error('Create station error');
+        });
+    // setIsCorrect(true);
+    // setTimeout(() => { setIsCorrect(false); }, 1000);
+}, []);
 
 
 return { cities, setCities, addCity, useDeleteCity, useUpdateCity, useOneCity, oneCity };

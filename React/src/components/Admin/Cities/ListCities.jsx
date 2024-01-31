@@ -9,26 +9,35 @@ import { useEffect } from 'react';
 
 
 export function ListCities() {
-  const {cities, useDeleteCity, useUpdateCity, useOneCity} = useCities();
+  const {cities, useDeleteCity, useUpdateCity, oneCity , useOneCity} = useCities();
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const [id, setId] = useState(null);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
 
-  
+  //delete city
   function deleteCity(slug) {
     // console.log(id);
     useDeleteCity(slug);
 
   }
 
+  //send new data to backend
+  const emit_data = (cityData) => {
+    console.log(cityData);
+    useUpdateCity(id, cityData);
+  }
+
+  //activate modal
   function updateCity(slug) {
     console.log(slug);
     setId(slug);
     handleShow();
-    // useUpdateCity(slug);
-    // navigate(`/cities-update/${slug}`);
   }
 
+  // get data of updating city
   useEffect(() => {
     if(id !== null){
       useOneCity(id);
@@ -64,7 +73,8 @@ export function ListCities() {
           </tbody>
         </table>
       </div>
-      <CitiesModal show={show} handleClose={handleClose} updatedZone={oneZone} onAddZone={emit_data}/>
+      <CitiesModal updatedCity={oneCity} onAddCity={emit_data} show={show} handleClose={handleClose}/>
+      
     </div>
    
   );
