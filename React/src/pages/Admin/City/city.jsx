@@ -13,10 +13,6 @@ export default function city() {
     const handleShow = () => setShow(true);
     const [show, setShow] = useState(false);
     const {cities, setCities, addCity} = useCities();
-    const navigate = useNavigate();
-    const redirects = { 
-        create: () => navigate('/admin-cities-create'),
-    }
 
     useEffect(() => {
         CitiesService.getAllCities()

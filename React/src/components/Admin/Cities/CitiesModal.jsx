@@ -10,7 +10,6 @@ function CitiesModal({ onAddZone, show, handleClose, updatedCity}) {
   const [image, setImage] = useState(updatedCity ? updatedCity.image : '');
   const [isUpdate, setIsUpdate] = useState(false);
 
-
   useEffect(() => {
       if(updatedCity) {
           setCity(updatedCity.name);
@@ -90,6 +89,7 @@ function CitiesModal({ onAddZone, show, handleClose, updatedCity}) {
             <Form.Select value={state} onChange={handleStateChange}>
               <option value="" disabled>Seleccione una comunidad</option>
               {comunidadesAutonomas.map((comunidad) => (
+                // eslint-disable-next-line react/jsx-key
                 <option value={comunidad.value}>{comunidad.label}</option>
               ))}
             </Form.Select>

@@ -52,8 +52,8 @@ export function ListZones() {
                 <th scope="col">Type</th>
                 <th scope="col">Image</th>
                 <th scope="col">City</th>
-                <th scope="col">Actions</th>
-                <th scope="col">Actions</th>
+                <th scope="col">Delete</th>
+                <th scope="col">Update</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,7 +64,7 @@ export function ListZones() {
             <td>{zone.zone_image}</td>
             <td>{zone.city}</td>            
             <td><button className="btn btn-danger" onClick={() => deleteZone(zone.slug)}>DELETE</button> </td>
-              <td><button className="btn btn-primary" onClick={() => updateZone(zone.slug) }>UPDATE</button></td>
+            <td><button className="btn btn-primary" onClick={() => updateZone(zone.slug) }>UPDATE</button></td>
             </tr>
         ))}
             </tbody>

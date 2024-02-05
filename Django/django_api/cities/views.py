@@ -182,7 +182,8 @@ class ApartmentView(viewsets.GenericViewSet):
                     zone=zone_2
                 )
 
-                return JsonResponse({'message': 'Apartment created successfully'}, status=status.HTTP_201_CREATED)
+                apartment_serializer = ApartmentSerializer(instance=apartment)
+                return JsonResponse(apartment_serializer.data , status=status.HTTP_201_CREATED)
 
             except Zone.DoesNotExist:
                 return JsonResponse({'error': 'Zone not found'}, status=status.HTTP_404_NOT_FOUND)

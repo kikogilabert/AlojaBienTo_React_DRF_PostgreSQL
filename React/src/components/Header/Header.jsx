@@ -8,6 +8,10 @@ export default function Header() {
         home: () => navigate('/home'),
         cities: () => navigate('/cities'),
         zones: () => navigate('/zones'),
+
+        admin_cities: () => navigate('/admin-cities'),
+        admin_zones: () => navigate('/admin-zones'),
+        admin_apartments: () => navigate('/admin-apartments'),
     }
     
     return (
@@ -18,6 +22,10 @@ export default function Header() {
                     <a  onClick={() => redirects.home()} className="w3-bar-item w3-button">Home</a>
                     <a  onClick={() => redirects.cities()} className="w3-bar-item w3-button">Cities</a>
                     <a onClick={() => redirects.zones()} className="w3-bar-item w3-button">Zones</a>
+
+                    <a  onClick={() => redirects.admin_cities()} className="w3-bar-item w3-button">Admin Cities</a>
+                    <a  onClick={() => redirects.admin_zones()} className="w3-bar-item w3-button">Admin Zones</a>
+                    <a onClick={() => redirects.admin_apartments()} className="w3-bar-item w3-button">Admin Apartments</a>
                 </div>
             </div>
         </div>

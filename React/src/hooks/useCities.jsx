@@ -85,7 +85,7 @@ const useUpdateCity = useCallback((slug, data) => {
         })
         .catch(e => {
             console.error(e);
-            toast.error('Create station error');
+            // toast.error('Create station error');
         });
     // setIsCorrect(true);
     // setTimeout(() => { setIsCorrect(false); }, 1000);

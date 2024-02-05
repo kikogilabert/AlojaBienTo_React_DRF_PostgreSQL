@@ -10,7 +10,7 @@ export function ZonesContextProvider({children}) {
         ZonesService.getAllZones()
             .then(response => {
                 setZones(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(e => {
                 console.log(e);
