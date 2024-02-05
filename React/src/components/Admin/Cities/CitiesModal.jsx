@@ -1,14 +1,19 @@
+CitiesModal.jsx
+
+
+
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function CitiesModal({ onAddZone, show, handleClose, updatedCity}) {
+function CitiesModal({ onAddCity, show, handleClose, updatedCity}) {
   const [name, setCity] = useState(updatedCity ? updatedCity.name : '');
   const [state, setState] = useState(updatedCity ? updatedCity.state : '');
   const [country, setCountry] = useState(updatedCity ? updatedCity.country : '');
   const [image, setImage] = useState(updatedCity ? updatedCity.image : '');
   const [isUpdate, setIsUpdate] = useState(false);
+
 
   useEffect(() => {
       if(updatedCity) {
@@ -44,9 +49,9 @@ function CitiesModal({ onAddZone, show, handleClose, updatedCity}) {
         // console.log(name, state, country, image);    
     if(isUpdate === true){
             console.log("isUpdate");
-            onAddZone({ name, state, country, image }, updatedCity.id);
+            onAddCity({ name, state, country, image }, updatedCity.id);
         }else{
-            onAddZone({ name, state, country, image });
+            onAddCity({ name, state, country, image });
             resetData();
         }
   };

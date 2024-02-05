@@ -21,10 +21,8 @@ export default function city() {
 
     return (
     <article>
-        <br></br><br></br><br></br>
-            <h1>ZONES</h1>
+        <br></br><br></br>
             <ListZones AllZones={zones} />
-            {/* <ListCities AllCities={cities}/> */}
     </article>
     )
 }

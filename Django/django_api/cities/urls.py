@@ -18,7 +18,7 @@ urlpatterns = [
     path('zones/', ZoneView.as_view({'post': 'post'})),
     path('zones/<str:slug_zone>', ZoneView.as_view({'delete': 'delete'})),
     path('zones/<str:slug_zone>', ZoneView.as_view({'put': 'put'})),
-    path('zones/<str:slug_city>', ZoneView.as_view({'get': 'getAllZonesByCity'})),
+    path('zone_city/<str:slug_city>', ZoneView.as_view({'get': 'getAllZonesByCity'})),
     
     #Rutas CRUD Apartments
     path('apartments/', ApartmentView.as_view({'get': 'getAllApartments'})),

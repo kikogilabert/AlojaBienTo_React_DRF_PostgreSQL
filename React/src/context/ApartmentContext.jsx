@@ -10,7 +10,7 @@ export function ApartmentContextProvider({children}) {
         ApartmentService.getAllApartments()
             .then(response => {
                 setApartments(response.data);
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(e => {
                 console.log(e);

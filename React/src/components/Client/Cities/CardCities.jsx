@@ -3,11 +3,15 @@ import { useCities } from '../../../hooks/useCities';
 import { useNavigate } from "react-router-dom";
 import CardCitiesCSS from './CardCities.module.css';
 
-export default function ListCities( { city }) {
+export default function ListCities( { city, onClick }) {
   const {cities, useOneCity} = useCities();
-  // console.log(city);
+  
+  const handleClick = () => {
+    onClick(city.slug);
+  };
+
   return (
-  <div className={CardCitiesCSS.box}>
+  <div className={CardCitiesCSS.box} onClick={handleClick}>
       <div className={CardCitiesCSS.card}>
         <div className={CardCitiesCSS.imgBx}>
             <img src={ city.image } alt="images"/>

@@ -33,6 +33,7 @@ export function AppRouter() {
             {/* Client */}
             <Route path="/cities" element={ <City_Cli /> } />
             <Route path='/zones' element={ <Zone_Cli/>} />
+            <Route path="/zones/:slug" element={<Zone_Cli/>}/>
             {/* Admin */}
             <Route path="/admin-cities" element={ <City /> } />
             <Route path="/admin-zones" element={ <Zone /> } />
