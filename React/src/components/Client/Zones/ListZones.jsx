@@ -18,7 +18,7 @@ export default function ListZones({ AllZones }) {
     AllZones = citiesZones
   }
 
-  console.log(AllZones);
+  // console.log(AllZones);
 
     return (
       <div className={CardZonesCSS.align_cards}>

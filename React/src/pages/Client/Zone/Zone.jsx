@@ -12,7 +12,7 @@ export default function city() {
         ZonesService.getAllZones()
             .then(response => {
                 setZones(response.data);
-                console.log(response.data);
+                // console.log('All Cities', response.data);
             })
             .catch(e => {
                 console.log(e);

@@ -1,8 +1,19 @@
 import React from 'react'
 // import ListCities from '../components/Client/Cities/ListCities'
 import HomeCSS from  './Home.module.css';
+import CardHome from '../components/Home/card_home';
+import { useContext } from "react";
+import CitiesContext from "../context/CitiesContext";
+import { useNavigate } from 'react-router-dom';
+
+
 
 export default function Home() {
+    const navigate = useNavigate();
+    const handleCityClick = (slug) => {
+        navigate('/zones/' + slug)
+    };
+    const { cities, setCities } = useContext(CitiesContext);
     return (
             <div>
         
@@ -20,69 +31,19 @@ export default function Home() {
               <div className="w3-content w3-padding" style={{ maxWidth: '1564px' }}>
         
                 {/* <!-- Project Section --> */}
-
+{/* ------------------------------------------------------------------------------------------------------------------- */}
                 <div className="w3-row-padding">
                 <div className="w3-container w3-padding-32" id="projects">
-                    <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+                    <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Nuestras Mejores Ciudades</h3>
                 </div>
-
                 <div className="w3-row-padding">
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Summer House</div>
-                        <img src="/w3images/house5.jpg" alt="House" width="100%" />
-                        {/* <img className="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800" /> */}
+                {cities.map((city, index) => (
+                    <CardHome key={city.id} city={city} onClick={handleCityClick} />
+                ))}
+                </div>
+                </div>
+        {/* -------------------------------------------------------------------------------------------- */}
 
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Brick House</div>
-                        <img src="/w3images/house2.jpg" alt="House" width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Renovated</div>
-                        <img src="/w3images/house3.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Barn House</div>
-                        <img src="/w3images/house4.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                </div>
-
-                <div className="w3-row-padding">
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Summer House</div>
-                        <img src="/w3images/house2.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Brick House</div>
-                        <img src="/w3images/house5.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Renovated</div>
-                        <img src="/w3images/house4.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Barn House</div>
-                        <img src="/w3images/house3.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                </div>
-                </div>
-        
                 {/* <!-- About Section --> */}
                 <div className="w3-container w3-padding-32" id="about">
                 <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
