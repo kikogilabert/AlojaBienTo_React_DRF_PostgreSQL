@@ -1,19 +1,26 @@
 import React from 'react'
 // import ListCities from '../components/Client/Cities/ListCities'
 import HomeCSS from  './Home.module.css';
-import CardHome from '../components/Home/card_home';
+import CardHomeCities from '../components/Home/card_home_cities';
 import { useContext } from "react";
 import CitiesContext from "../context/CitiesContext";
+import ApartmentContext from "../context/ApartmentContext";
 import { useNavigate } from 'react-router-dom';
+import CardHomeApartments from '../components/Home/card_home_apartments';
 
 
 
 export default function Home() {
     const navigate = useNavigate();
+    const { cities, setCities } = useContext(CitiesContext);
+    const { apartments, setApartments } = useContext(ApartmentContext);
+
     const handleCityClick = (slug) => {
         navigate('/zones/' + slug)
     };
-    const { cities, setCities } = useContext(CitiesContext);
+    const handleApartmentsClick = (slug) => {
+      navigate('/apartments/' + slug)
+  };
     return (
             <div>
         
@@ -38,7 +45,7 @@ export default function Home() {
                 </div>
                 <div className="w3-row-padding">
                 {cities.map((city, index) => (
-                    <CardHome key={city.id} city={city} onClick={handleCityClick} />
+                    <CardHomeCities key={city.id} city={city} onClick={handleCityClick} />
                 ))}
                 </div>
                 </div>
@@ -54,34 +61,9 @@ export default function Home() {
                 </p>
                 </div>
                     <div className="w3-row-padding w3-grayscale">
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team2.jpg" alt="John" width="100%"/>
-                            <h3>John Doe</h3>
-                            <p className="w3-opacity">CEO & Founder</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team1.jpg" alt="Jane" width="100%"/>
-                            <h3>Jane Doe</h3>
-                            <p className="w3-opacity">Architect</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team3.jpg" alt="Mike" width="100%"/>
-                            <h3>Mike Ross</h3>
-                            <p className="w3-opacity">Architect</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team4.jpg" alt="Dan" width="100%"/>
-                            <h3>Dan Star</h3>
-                            <p className="w3-opacity">Architect</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
+                      {apartments.map((apartment, index) => (
+                        <CardHomeApartments key={apartment.id} apartment={apartment} onClick={handleApartmentsClick} />
+                      ))}
                     </div>
                 </div>
         
