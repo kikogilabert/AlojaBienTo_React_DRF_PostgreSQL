@@ -60,7 +60,7 @@ export default function Home() {
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
                 </div>
-                    <div className="w3-row-padding w3-grayscale">
+                    <div className="w3-row-padding">
                       {apartments.map((apartment, index) => (
                         <CardHomeApartments key={apartment.id} apartment={apartment} onClick={handleApartmentsClick} />
                       ))}

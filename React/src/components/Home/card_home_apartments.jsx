@@ -22,7 +22,7 @@ export default function CardHomeApartments({onClick, apartment, AllCities }) {
                 <li><FontAwesomeIcon icon={faBath} /> {apartment.bathrooms} baños</li>
                 <li><FontAwesomeIcon icon={faHouse} /> {apartment.size} m²</li>
             </ul>
-            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
+            <p><button className="w3-button w3-light-grey w3-block">View More</button></p>
         </div>   
                 
     );
