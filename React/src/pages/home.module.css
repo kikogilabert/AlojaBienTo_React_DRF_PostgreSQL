@@ -1,1 +1,32 @@
 @import url("https://www.w3schools.com/w3css/4/w3.css");
+
+.ajustes{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    flex-direction: row;
+}
+
+.fotoajustes{
+    cursor: pointer;
+    width: 300px;
+    height: 250px;
+    margin: 10px;
+}
+
+
+.fotocasa{
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    height: 270px;
+    filter: none;
+}
+
+.lists{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 15px;
+}
+

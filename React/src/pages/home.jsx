@@ -1,8 +1,26 @@
 import React from 'react'
 // import ListCities from '../components/Client/Cities/ListCities'
 import HomeCSS from  './Home.module.css';
+import CardHomeCities from '../components/Home/card_home_cities';
+import { useContext } from "react";
+import CitiesContext from "../context/CitiesContext";
+import ApartmentContext from "../context/ApartmentContext";
+import { useNavigate } from 'react-router-dom';
+import CardHomeApartments from '../components/Home/card_home_apartments';
+
+
 
 export default function Home() {
+    const navigate = useNavigate();
+    const { cities, setCities } = useContext(CitiesContext);
+    const { apartments, setApartments } = useContext(ApartmentContext);
+
+    const handleCityClick = (slug) => {
+        navigate('/zones/' + slug)
+    };
+    const handleApartmentsClick = (slug) => {
+      navigate('/apartments/' + slug)
+  };
     return (
             <div>
         
@@ -20,69 +38,19 @@ export default function Home() {
               <div className="w3-content w3-padding" style={{ maxWidth: '1564px' }}>
         
                 {/* <!-- Project Section --> */}
-
+{/* ------------------------------------------------------------------------------------------------------------------- */}
                 <div className="w3-row-padding">
                 <div className="w3-container w3-padding-32" id="projects">
-                    <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Projects</h3>
+                    <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Nuestras Mejores Ciudades</h3>
                 </div>
-
                 <div className="w3-row-padding">
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Summer House</div>
-                        <img src="/w3images/house5.jpg" alt="House" width="100%" />
-                        {/* <img className="w3-image" src="/w3images/architect.jpg" alt="Architecture" width="1500" height="800" /> */}
+                {cities.map((city, index) => (
+                    <CardHomeCities key={city.id} city={city} onClick={handleCityClick} />
+                ))}
+                </div>
+                </div>
+        {/* -------------------------------------------------------------------------------------------- */}
 
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Brick House</div>
-                        <img src="/w3images/house2.jpg" alt="House" width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Renovated</div>
-                        <img src="/w3images/house3.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Barn House</div>
-                        <img src="/w3images/house4.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                </div>
-
-                <div className="w3-row-padding">
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Summer House</div>
-                        <img src="/w3images/house2.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Brick House</div>
-                        <img src="/w3images/house5.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Renovated</div>
-                        <img src="/w3images/house4.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                    <div className="w3-col l3 m6 w3-margin-bottom">
-                    <div className="w3-display-container">
-                        <div className="w3-display-topleft w3-black w3-padding">Barn House</div>
-                        <img src="/w3images/house3.jpg" alt="House"  width="100%"/>
-                    </div>
-                    </div>
-                </div>
-                </div>
-        
                 {/* <!-- About Section --> */}
                 <div className="w3-container w3-padding-32" id="about">
                 <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
@@ -92,35 +60,10 @@ export default function Home() {
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                 </p>
                 </div>
-                    <div className="w3-row-padding w3-grayscale">
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team2.jpg" alt="John" width="100%"/>
-                            <h3>John Doe</h3>
-                            <p className="w3-opacity">CEO & Founder</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team1.jpg" alt="Jane" width="100%"/>
-                            <h3>Jane Doe</h3>
-                            <p className="w3-opacity">Architect</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team3.jpg" alt="Mike" width="100%"/>
-                            <h3>Mike Ross</h3>
-                            <p className="w3-opacity">Architect</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
-                        <div className="w3-col l3 m6 w3-margin-bottom">
-                            <img src="/w3images/team4.jpg" alt="Dan" width="100%"/>
-                            <h3>Dan Star</h3>
-                            <p className="w3-opacity">Architect</p>
-                            <p>Phasellus eget enim eu lectus faucibus vestibulum. Suspendisse sodales pellentesque elementum.</p>
-                            <p><button className="w3-button w3-light-grey w3-block">Contact</button></p>
-                        </div>
+                    <div className="w3-row-padding">
+                      {apartments.map((apartment, index) => (
+                        <CardHomeApartments key={apartment.id} apartment={apartment} onClick={handleApartmentsClick} />
+                      ))}
                     </div>
                 </div>
         
