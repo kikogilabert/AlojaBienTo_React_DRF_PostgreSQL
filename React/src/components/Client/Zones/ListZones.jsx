@@ -7,9 +7,10 @@ import { useCities } from '../../../hooks/useCities';
 import CardZonesCSS from './CardZones.module.css';
 
 export default function ListZones({ AllZones }) {
+  const navigate = useNavigate();
   const { slug } = useParams();
   const { zones } = useZones();
-  const { useOneCity, oneCity, citiesZones } = useCities();
+  const { useOneCity, citiesZones } = useCities();
 
   if ( slug ) {
     useEffect(function () {
@@ -17,13 +18,14 @@ export default function ListZones({ AllZones }) {
     }, [])
     AllZones = citiesZones
   }
-
-  console.log(AllZones);
+  const handleCityClick = (slug) => {
+    navigate('/apartments/' + slug)
+  };
 
     return (
       <div className={CardZonesCSS.align_cards}>
         {AllZones.map(zone => (
-        <CardZones key={zone.id} zone={zone}/>
+        <CardZones key={zone.id} zone={zone} onClick={handleCityClick}/>
       ))}
       </div>
     );

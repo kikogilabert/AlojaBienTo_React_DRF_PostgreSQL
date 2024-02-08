@@ -95,7 +95,7 @@ export function useCities() {
                         old_cities[index] = data;
                         setCities(old_cities);
                     }
-                    navigate("/cities");
+                    navigate("/admin-cities");
                 }
             })
             .catch(e => {

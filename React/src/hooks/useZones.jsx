@@ -82,12 +82,11 @@ const useUpdateZone = useCallback((slug, data) => {
                     old_zones[index] = data;
                     setZones(old_zones);
                 }
-                navigate("/zones");
+                navigate("/admin-zones");
             }
         })
         .catch(e => {
             console.error(e);
-            toast.error('Create station error');
         });
 }, []);
 

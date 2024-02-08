@@ -2,28 +2,30 @@ import {React, useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useApartments } from '../../../hooks/useApartments';
 import { useNavigate } from "react-router-dom";
-import CardZones from './CardZones'
-import { useZones } from '../../../hooks/useZones';
+import CardApartments from './CardApartments'
+import CardApartmentsCSS from './CardApartments.module.css';
 
 export default function ListApartments({ AllApartments }) {
   const { slug } = useParams();
-  const { zones } = useZones();
-  const { useOneCity, oneCity, citiesZones } = useApartments();
+  const { apartments } = useApartments();
+  const { useOneApartment, zoneApartments } = useApartments();
 
   if ( slug ) {
     useEffect(function () {
-      useOneZone(slug);
+      useOneApartment(slug);
     }, [])
-    AllApartments = citiesZones
+    AllApartments = zoneApartments
   }
 
+  console.log(AllApartments);
     return (
-      // <CardZones/>
-      // <div className={CardCitiesCSS.align_cards}>
-        // {AllZones.map(zone => (
-          // <CardZones key={zone.id} zone={zone}/>
-        // ))}
-      // </div>
-      <CardZones/>
+      <>
+      <br></br><br></br>
+      <div className={CardApartmentsCSS.align_cards}>
+        {AllApartments.map(apartment => (
+            <CardApartments key={apartment.id} apartment={apartment}/>
+          ))}
+      </div>
+      </>
     );
 };
