@@ -39,7 +39,7 @@ class UserInfoView(viewsets.GenericViewSet):
         serializer_context = { 'username': username }
         serializer = userSerializer.getUser(context=serializer_context)
         return Response(serializer)
-
+    
     def refreshToken(self, request):
         username = request.user
         serializer_context = { 'username': username }
@@ -55,8 +55,8 @@ class UserAdminView(viewsets.GenericViewSet):
 
     def getAllUsers(self, request):
         users = User.objects.all()
-        users_serializer = userSerializer(users, many=True)
-        return Response(users_serializer.data)
+        serializer = userSerializer(users, many=True)
+        return Response(serializer.data)
 
     def delete(self, request, uuid):
         user = User.objects.get(uuid=uuid)

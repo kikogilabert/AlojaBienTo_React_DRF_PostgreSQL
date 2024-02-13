@@ -6,7 +6,6 @@ import Footer from "./components/Footer/Footer";
 export function App() {
   return (
     <>
-      <Header/>
       <AppRouter/>
       <br />
       <br />
