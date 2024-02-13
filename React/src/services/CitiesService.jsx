@@ -18,9 +18,12 @@ const CitiesService = {
         return api().put(`cities/${slug}`, data);
     },
 
-    
     deleteCity(slug) {
         return api().delete(`cities/${slug}`);
+    },
+
+    getOneCityById(id) {
+        return api().get(`city_id/${id}`);
     },
 };
 export default CitiesService;

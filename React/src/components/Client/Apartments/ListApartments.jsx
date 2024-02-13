@@ -1,31 +1,39 @@
 import {React, useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { useApartments } from '../../../hooks/useApartments';
+import { useZones } from '../../../hooks/useZones';
 import { useNavigate } from "react-router-dom";
-import CardApartments from './CardApartments'
-import CardApartmentsCSS from './CardApartments.module.css';
+import CardHomeApartments from '../../Home/card_home_apartments'
 
 export default function ListApartments({ AllApartments }) {
+
+  const navigate = useNavigate();
   const { slug } = useParams();
+
   const { apartments } = useApartments();
-  const { useOneApartment, zoneApartments } = useApartments();
+  const { useOneZone, zoneApartments } = useZones();
 
   if ( slug ) {
     useEffect(function () {
-      useOneApartment(slug);
+      useOneZone(slug);
     }, [])
     AllApartments = zoneApartments
   }
 
-  console.log(AllApartments);
+  const handleCityClick = (slug_apartment) => {
+    // console.log(slug_apartment);
+    navigate('/apartment_details/' + slug_apartment)
+  };
+
     return (
       <>
-      <br></br><br></br>
-      <div className={CardApartmentsCSS.align_cards}>
-        {AllApartments.map(apartment => (
-            <CardApartments key={apartment.id} apartment={apartment}/>
-          ))}
-      </div>
+        <br></br><br></br>
+        <br></br>
+        <div className="w3-row-padding w3-margin-top">
+          {AllApartments.map(apartment => (
+              <CardHomeApartments key={apartment.id} apartment={apartment} onClick={handleCityClick}/>
+            ))}
+        </div>
       </>
     );
 };

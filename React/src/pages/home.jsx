@@ -15,11 +15,12 @@ export default function Home() {
     const { cities, setCities } = useContext(CitiesContext);
     const { apartments, setApartments } = useContext(ApartmentContext);
 
-    const handleCityClick = (slug) => {
-        navigate('/zones/' + slug)
+    const handleCityClick = (slug_city) => {
+        navigate('/zones/' + slug_city)
     };
-    const handleApartmentsClick = (slug) => {
-      navigate('/apartments/' + slug)
+
+    const handleApartmentsClick = (slug_apartment) => {
+      navigate('/apartment_details/' + slug_apartment)
   };
     return (
             <div>
@@ -38,7 +39,7 @@ export default function Home() {
               <div className="w3-content w3-padding" style={{ maxWidth: '1564px' }}>
         
                 {/* <!-- Project Section --> */}
-{/* ------------------------------------------------------------------------------------------------------------------- */}
+
                 <div className="w3-row-padding">
                 <div className="w3-container w3-padding-32" id="projects">
                     <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Nuestras Mejores Ciudades</h3>
@@ -49,15 +50,18 @@ export default function Home() {
                 ))}
                 </div>
                 </div>
-        {/* -------------------------------------------------------------------------------------------- */}
 
                 {/* <!-- About Section --> */}
                 <div className="w3-container w3-padding-32" id="about">
-                <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">About</h3>
+                <h3 className="w3-border-bottom w3-border-light-grey w3-padding-16">Variedad de Lugares</h3>
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                    exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                Somos una empresa especializada en ofrecer una amplia gama de apartamentos en diferentes ubicaciones de España. 
+                Desde las bulliciosas calles de Barcelona hasta los encantadores pueblos costeros de Andalucía, nuestra variedad de 
+                apartamentos brinda opciones para satisfacer todas las necesidades y preferencias. 
+                Con un enfoque en la comodidad, la calidad y la accesibilidad, nos esforzamos por proporcionar a nuestros clientes 
+                experiencias únicas y memorables en cada estancia. Ya sea que estés planeando unas vacaciones familiares, 
+                un viaje de negocios o una escapada romántica, estamos aquí para ayudarte a encontrar el alojamiento 
+                perfecto para tu próxima aventura en España.
                 </p>
                 </div>
                     <div className="w3-row-padding">
@@ -65,17 +69,7 @@ export default function Home() {
                         <CardHomeApartments key={apartment.id} apartment={apartment} onClick={handleApartmentsClick} />
                       ))}
                     </div>
-                </div>
-        
-                {/* <!-- Contact Section --> */}
-                 <div className="w3-container w3-padding-32" id="contact">
-                  {/* ... (Contact form) ... */}
-                </div>
-        
-                {/* <!-- Image of location/map --> */}
-                <div className="w3-container">
-                  <img src="/w3images/map.jpg" className="w3-image" width="100%"/>
-                </div>            
+                </div>          
             </div>
           );
 }

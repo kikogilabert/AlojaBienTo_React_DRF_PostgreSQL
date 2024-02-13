@@ -1,26 +1,57 @@
 import { useContext, useCallback, useEffect, useState } from "react";
 import ZonesService from "../services/ZonesService";
+import ApartmentService from "../services/ApartmentService";
 import ZonesContext from "../context/ZonesContext";
 import { useNavigate } from "react-router-dom";
 
 export function useZones() {
-const { zones, setZones } = useContext(ZonesContext);
 
-const [oneZone, setOneZone] = useState({});
+    const { zones, setZones } = useContext(ZonesContext);
 
-const navigate = useNavigate();
+    const [oneZone, setOneZone] = useState({});
 
+    const [oneZoneByApartment, setOneZoneByApartment] = useState({});
 
-//GET ONE ZONE
-const useOneZone = useCallback((id) => {
-    // console.log(id);
-    ZonesService.getOneZone(id)
-        .then(({data}) => {
-            console.log(data);
-            setOneZone(data);
+    const [ zoneApartments, setZoneApartments] = useState([]);
+    
+    const [ useOneZoneCompleted, setUseOneZoneCompleted ] = useState(false);
+
+    const navigate = useNavigate();
+
+    const useOneZoneByApartment = useCallback((zone_id) => {
+        ZonesService.getOneZoneById(zone_id)
+            .then(({ data }) => {
+                setOneZoneByApartment(data);
+            })
+            .catch((e) => console.error(e));
+    }, []);
+
+    const useOneZone = useCallback((slug) => {
+
+        ZonesService.getOneZone(slug)
+            .then(({ data }) => {
+                // console.log(data);
+                setOneZone(data);
+                setUseOneZoneCompleted(true);
+            })
+            .catch((e) => console.error(e));
+    }, []);
+
+    //EL USE EFFECT SOLO SE EJECUTARA CUANDO SE REALIZE EL useOneCity
+
+    useEffect(() => {
+    if (oneZone && useOneZoneCompleted) {
+        // console.log(oneZone.slug);
+        ApartmentService.getApartmentsByZone(oneZone.slug)
+        .then(({ data, status }) => {
+            if (status === 200) {
+                // console.log(data);
+                setZoneApartments(data);
+            }
         })
-        .catch(e => console.error(e));
-}, []);
+        .catch((e) => console.error(e));
+    }
+    }, [oneZone, useOneZoneCompleted]);
 
 
 //CREATE ONE ZONE
@@ -38,13 +69,11 @@ const addZone = useCallback(data => {
                 console.log(data.data);
                 setZones([...zones, data.data]);
                 console.log(zones);
-        })
-        .catch(e => {
-            console.error(e);
-                });
-            }
-        , [zones]);
-// });
+    })
+    .catch(e => {
+        console.error(e);
+            });
+}, [zones]);
 
 //DELETE ONE ZONE
 const useDeleteZone = (slug) => {
@@ -91,5 +120,5 @@ const useUpdateZone = useCallback((slug, data) => {
 }, []);
 
 
-return { zones, setZones, addZone, useDeleteZone, useUpdateZone, useOneZone, oneZone };
+return { zones, setZones, addZone, useDeleteZone, useUpdateZone, useOneZone, oneZone, setZoneApartments, zoneApartments, useOneZoneByApartment, oneZoneByApartment, setOneZoneByApartment };
 }

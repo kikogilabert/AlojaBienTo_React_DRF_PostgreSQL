@@ -11,11 +11,9 @@ const [oneApartment, setOneApartment] = useState({});
 
 const navigate = useNavigate();
 
-const useOneApartment = useCallback((id) => {
-    // console.log(id);
-    ApartmentService.getOneApartment(id)
+const useOneApartment = useCallback((slug) => {
+    ApartmentService.getOneApartment(slug)
         .then(({data}) => {
-            // console.log(data);
             setOneApartment(data);
         })
         .catch(e => console.error(e));

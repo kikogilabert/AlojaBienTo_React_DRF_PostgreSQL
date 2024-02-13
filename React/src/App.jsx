@@ -8,11 +8,7 @@ export function App() {
     <>
       <Header/>
       <AppRouter/>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <br /><br />
       <Footer/>
     </>
   );

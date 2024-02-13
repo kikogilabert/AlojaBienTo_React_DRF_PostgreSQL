@@ -11,8 +11,17 @@ export function useCities() {
     const [ citiesZones, setCityZones] = useState([]);
     const [ oneCity, setOneCity ] = useState({});
     const [ useOneCityCompleted, setUseOneCityCompleted ] = useState(false);
+    const [oneCityByZone, setOneCityByZone] = useState({});
     
     const navigate = useNavigate();
+
+    const useOneCityByZone = useCallback((city_id) => {
+        CitiesService.getOneCityById(city_id)
+            .then(({ data }) => {
+                setOneCityByZone(data);
+            })
+            .catch((e) => console.error(e));
+    }, []);
 
     const useOneCity = useCallback((slug) => {
 
@@ -106,5 +115,5 @@ export function useCities() {
         // setTimeout(() => { setIsCorrect(false); }, 1000);
     }, []);
 
-    return { cities, setCities, addCity, useDeleteCity, useUpdateCity, useOneCity, oneCity, setCityZones,citiesZones  };
+    return { cities, setCities, addCity, useDeleteCity, useUpdateCity, useOneCity, oneCity, setCityZones,citiesZones, setOneCityByZone, oneCityByZone, useOneCityByZone  };
 }

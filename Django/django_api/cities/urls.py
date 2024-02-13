@@ -8,6 +8,7 @@ urlpatterns = [
     # Rutas CRUD Cities
     path('cities/', CityView.as_view({'get': 'getAllCities'})),
     path('cities/<str:slug_city>', CityView.as_view({'get': 'getOneCity'})),
+    path('city_id/<str:id>', CityView.as_view({'get': 'getOneCityById'})),
     path('cities/', CityView.as_view({'post': 'post'})),
     path('cities/<str:slug_city>', CityView.as_view({'delete': 'delete'})),
     path('cities/<str:slug_city>', CityView.as_view({'put': 'put'})),
@@ -15,6 +16,7 @@ urlpatterns = [
     # Rutas CRUD Zones
     path('zones/', ZoneView.as_view({'get': 'getAllZones'})),
     path('zones/<str:slug_zone>', ZoneView.as_view({'get': 'getOneZone'})),
+    path('zone_id/<str:id>', ZoneView.as_view({'get': 'GetZoneById'})),
     path('zones/', ZoneView.as_view({'post': 'post'})),
     path('zones/<str:slug_zone>', ZoneView.as_view({'delete': 'delete'})),
     path('zones/<str:slug_zone>', ZoneView.as_view({'put': 'put'})),

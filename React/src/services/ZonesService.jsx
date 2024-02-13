@@ -20,11 +20,15 @@ const ZonesService = {
 
     
     deleteZone(slug) {
-        return api().delete(`zones/${slug}`);
+        return api().delete(`/zones/${slug}`);
     },
 
     getZonesByCity(slug_city) {
-        return api().get(`zone_city/${slug_city}`)
+        return api().get(`/zone_city/${slug_city}`)
+    },
+
+    getOneZoneById(id) {
+        return api().get(`/zone_id/${id}`)
     }
 };
 export default ZonesService;

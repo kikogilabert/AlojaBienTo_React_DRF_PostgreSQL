@@ -48,11 +48,21 @@ class CityView(viewsets.GenericViewSet):
             city.delete() 
             return JsonResponse({'message': 'City was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
         
-        #______________________________GET ONE CITY_______________________________________________________________
+        #______________________________GET ONE CITY BY SLUG_______________________________________________________________
         
         def getOneCity(self,request, slug_city):
             try: 
                 city = City.objects.get(slug=slug_city)
+                city_serializer = CitySerializer(city) 
+                return JsonResponse(city_serializer.data)
+            except City.DoesNotExist: 
+                return JsonResponse({'message': 'The City does not exist'}, status=status.HTTP_404_NOT_FOUND)
+        
+        #______________________________GET ONE CITY BY ID_______________________________________________________________
+        
+        def getOneCityById(self,request, id):
+            try: 
+                city = City.objects.get(pk=id)
                 city_serializer = CitySerializer(city) 
                 return JsonResponse(city_serializer.data)
             except City.DoesNotExist: 
@@ -119,11 +129,21 @@ class ZoneView(viewsets.GenericViewSet):
             except Zone.DoesNotExist:
                 return JsonResponse({'message': 'The Zone does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
-        #______________________________GET ONE ZONE_______________________________________________________________
+        #______________________________GET ONE ZONE BY SLUG_______________________________________________________________
             
         def getOneZone(self,request, slug_zone):
             try: 
                 zone = Zone.objects.get(slug=slug_zone)
+                zone_serializer = ZoneSerializer(zone) 
+                return JsonResponse(zone_serializer.data)
+            except Zone.DoesNotExist: 
+                return JsonResponse({'message': 'The Zone does not exist'}, status=status.HTTP_404_NOT_FOUND)
+            
+        #______________________________GET ONE ZONE BY ID_______________________________________________________________
+        
+        def GetZoneById(self,request, id):
+            try: 
+                zone = Zone.objects.get(pk=id)
                 zone_serializer = ZoneSerializer(zone) 
                 return JsonResponse(zone_serializer.data)
             except Zone.DoesNotExist: 

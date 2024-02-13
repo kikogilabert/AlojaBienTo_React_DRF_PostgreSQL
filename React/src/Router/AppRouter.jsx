@@ -17,6 +17,9 @@ import Apartment_Cli from '../pages/Client/Apartment/apartment.jsx'
 //ADMIN-Apartments
 import Apartemnt from '../pages/Admin/Apartment/apartment.jsx';
 
+//DETAILS_APARTMENT
+import Apartment_details from '../pages/Client/Apartment/Details/apartment_details.jsx'
+
 //CONTEXT PROVIDERS
 import { CitiesContextProvider } from '../context/CitiesContext';
 import { ZonesContextProvider } from '../context/ZonesContext';
@@ -36,6 +39,7 @@ export function AppRouter() {
             <Route path="/zones/:slug" element={<Zone_Cli/>}/>
             <Route path="/apartments/:slug" element={<Apartment_Cli/>}/>
             <Route path="/apartments/" element={<Apartment_Cli/>}/>
+            <Route path="/apartment_details/:slug" element={<Apartment_details/>}/>
             {/* Admin */}
             <Route path="/admin-cities" element={ <City /> } />
             <Route path="/admin-zones" element={ <Zone /> } />
