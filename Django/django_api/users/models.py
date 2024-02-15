@@ -45,3 +45,13 @@ class User(AbstractBaseUser, PermissionsMixin):
         }, settings.SECRET_KEY, algorithm='HS256')
 
         return token.decode('utf-8')
+
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name="profile")
+    name = models.CharField(max_length=100)
+    surnames = models.CharField(max_length=100)
+    image = models.CharField(max_length=100,blank=True, default="https://avatars.dicebear.com/api/adventurer/default.svg")
+    biography = models.CharField(max_length=100,blank=True, default="Hello, I'm a scoonti user")
+
+    def __str__(self):
+        return self.id

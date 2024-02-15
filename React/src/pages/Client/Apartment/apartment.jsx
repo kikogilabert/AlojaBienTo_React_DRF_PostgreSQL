@@ -5,7 +5,7 @@ import { useContext, useCallback, useEffect, useState } from "react";
 import ApartmentService from "../../../services/ApartmentService";
 import ApartmentContext from "../../../context//ApartmentContext";
 
-export default function city() {
+export default function apartment() {
     const { apartments, setApartments } = useContext(ApartmentContext);
 
     useEffect(() => {
