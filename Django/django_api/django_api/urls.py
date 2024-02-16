@@ -5,5 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('cities.urls')),
     path('api/', include('users.urls')),
-
+    path('api/', include('reservations.urls')),
 ]
