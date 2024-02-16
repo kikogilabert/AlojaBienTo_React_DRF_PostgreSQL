@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import ApartmentsModal from '../../../components/Admin/Apartments/ApartmentsModal';
 
 
-export default function apartment() {
+export default function admin_apartment() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);

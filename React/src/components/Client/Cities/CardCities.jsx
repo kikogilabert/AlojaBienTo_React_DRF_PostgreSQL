@@ -3,7 +3,7 @@ import { useCities } from '../../../hooks/useCities';
 import { useNavigate } from "react-router-dom";
 import CardCitiesCSS from './CardCities.module.css';
 
-export default function ListCities( { city, onClick }) {
+export default function CardCities( { city, onClick }) {
   const {cities, useOneCity} = useCities();
   
   const handleClick = () => {

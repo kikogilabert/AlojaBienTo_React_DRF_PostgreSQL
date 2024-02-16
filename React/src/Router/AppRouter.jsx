@@ -22,12 +22,16 @@ import Apartemnt from '../pages/Admin/Apartment/apartment.jsx';
 
 //DETAILS_APARTMENT
 import Apartment_details from '../pages/Client/Apartment/Details/apartment_details.jsx'
+//Guards
+import AuthGuard from '../services/guards/AuthGuard';
+import AdminGuard from '../services/guards/AdminGuard';
 
 //CONTEXT PROVIDERS
 import { CitiesContextProvider } from '../context/CitiesContext';
 import { ZonesContextProvider } from '../context/ZonesContext';
 import { ApartmentContextProvider } from '../context/ApartmentContext';
 import { AuthContextProvider } from '../context/AuthContext.jsx';
+import Profile from '../pages/Client/Profile/profile.jsx';
 
 export function AppRouter() {
   return (
@@ -47,11 +51,18 @@ export function AppRouter() {
             <Route path="/apartments/" element={<Apartment_Cli/>}/>
             <Route path="/apartment_details/:slug" element={<Apartment_details/>}/>
             {/* Admin */}
-            <Route path="/admin-cities" element={ <City /> } />
-            <Route path="/admin-zones" element={ <Zone /> } />
-            <Route path='/admin-apartments' element={ <Apartemnt /> } />
-            {/* Login */}
+            <Route element={<AdminGuard/>}>
+              <Route path="/admin-cities" element={ <City /> } />
+              <Route path="/admin-zones" element={ <Zone /> } />
+              <Route path='/admin-apartments' element={ <Apartemnt /> } />
+            </Route>
+              {/* Login */}
             <Route path="/login" element={ <Login /> } />
+            
+            {/* Profile */}
+            <Route element={<AuthGuard/>}>
+              <Route path="/profile/:id" element={ <Profile /> } />
+            </Route>
           </Routes>
         </ApartmentContextProvider>
       </ZonesContextProvider>

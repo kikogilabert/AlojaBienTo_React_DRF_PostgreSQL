@@ -19,6 +19,7 @@ export default function Header() {
         cities: () => navigate('/cities'),
         zones: () => navigate('/zones'),
         apartments: () => navigate('/apartments'),
+        apartments: () => navigate('/apartments'),
         //ADMIN
         admin_cities: () => navigate('/admin-cities'),
         admin_zones: () => navigate('/admin-zones'),
@@ -29,11 +30,13 @@ export default function Header() {
             logout();
             navigate('/home');
         },
+
+        profile: () => navigate('/profile/' + user.id)
     }
 
     const { user, isAuth, isAdmin, logout } = useContext(AuthContext);
 
-    console.log(isAdmin, isAuth, user);
+    // console.log(user);
     return (
         <div className={HeaderCSS.top}>
             <div className="w3-bar w3-white w3-wide w3-padding w3-card">
@@ -52,7 +55,7 @@ export default function Header() {
                 }
                     <div className="w3-right w3-hide-small">
                 {(isAuth || isAdmin) && <>   
-                    <a className="w3-bar-item w3-button"> <FontAwesomeIcon icon={faUser} /> {user.username} </a>
+                    <a onClick={() => redirects.profile()} className="w3-bar-item w3-button"> <FontAwesomeIcon icon={faUser} /> {user.username} </a>
                     <a onClick={() => redirects.logout()} className="w3-bar-item w3-button">Logout <FontAwesomeIcon icon={faArrowRightToBracket} /></a>
                     {/* {isAuth && <a onClick={() => logout()} className="w3-bar-item w3-button">Logout</a>} */}
                     </>} 
