@@ -68,11 +68,49 @@ class IncidenceApartmentSerializer(serializers.ModelSerializer):
         incidence.save()
         return incidence
 
-    def getIncidentsUser(username):
+
+class NotificationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Notification
+        fields = ['id', 'desc', 'seen']
+
+    def to_notification(instance):
+        return ({
+            "id": instance.id,
+            "desc": instance.desc,
+            "seen": instance.seen
+        })
+
+    def getUserNotification(username):
         user = User.objects.get(username=username)
 
         if user is None:
             raise serializers.ValidationError('User not found')
 
-        incidents = IncidenceSlot.objects.filter(user_id=user.id)
-        return incidents
+        notification = Notification.objects.filter(user_id=user.id, seen=False)
+        return notification
+
+    def seeNotification(context):
+        notification_id = context['id']
+        username = context['username']
+
+        user = User.objects.get(username=username)
+        if user is None:
+            raise serializers.ValidationError('User is not found')
+
+        notification = Notification.objects.get(pk=notification_id, user_id=user.id, seen=False)
+        if notification is None:
+            raise serializers.ValidationError('Notification not found')
+
+        notification.seen = True
+        notification.save()
+
+        return notification
+    
+    def GetSeen_Notification(username):
+        user = User.objects.get(username=username)
+        if user is None:
+            raise serializers.ValidationError('User not found')
+
+        notification = Notification.objects.filter(user_id=user.id, seen=True)
+        return notification

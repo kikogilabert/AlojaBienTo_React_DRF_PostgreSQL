@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import IncidenceApartmentView, IncidentsAdminView
+from .views import IncidenceApartmentView, IncidentsAdminView, NotificationsView
 
 urlpatterns = [
     # ADMIN
@@ -11,6 +11,9 @@ urlpatterns = [
     path('apartment_incidence', IncidenceApartmentView.as_view({"post": "post"})),
 
     # NOTIFICATIONS
-    # path('notifications', NotificationsView.as_view({"get": "get"})),
-    # path('notifications/<int:id>', NotificationsView.as_view({"put": "seenNotification"})),
+    path('notifications', NotificationsView.as_view({"get": "getNotifications"})),
+    path('notifications/<int:id>', NotificationsView.as_view({"put": "seeNotification"})),
+    path('seen_notifications', NotificationsView.as_view({"get": "Seen_Notification"})),
+
+
 ]

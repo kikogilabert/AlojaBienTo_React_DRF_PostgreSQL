@@ -1,0 +1,22 @@
+.count {
+    position: absolute;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding-left: 5px;
+    padding-right: 2px;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+    transform: translate(45%, -35%);
+    /* transition: transform 0.3s; */
+    z-index: 1;
+}
+
+.-count:hover{
+    cursor: pointer;
+    /* transform: scale(1.2); */
+}
