@@ -19,11 +19,12 @@ export default function Header() {
         cities: () => navigate('/cities'),
         zones: () => navigate('/zones'),
         apartments: () => navigate('/apartments'),
-        apartments: () => navigate('/apartments'),
+
         //ADMIN
         admin_cities: () => navigate('/admin-cities'),
         admin_zones: () => navigate('/admin-zones'),
         admin_apartments: () => navigate('/admin-apartments'),
+        admin_reservations: () => navigate('/admin-reservations'),
         
         login: () => navigate('/login'),
         logout: () => {
@@ -45,12 +46,14 @@ export default function Header() {
                     <a  onClick={() => redirects.admin_cities()} className="w3-bar-item w3-button">Admin Cities</a>
                     <a  onClick={() => redirects.admin_zones()} className="w3-bar-item w3-button">Admin Zones</a>
                     <a onClick={() => redirects.admin_apartments()} className="w3-bar-item w3-button">Admin Apartments</a>
+                    <a onClick={() => redirects.admin_reservations()} className="w3-bar-item w3-button">Admin Reservations</a>
                 </>}
                 {!isAdmin && 
                 <>
                     <a  onClick={() => redirects.home()} className="w3-bar-item w3-button">Home</a>
                     <a  onClick={() => redirects.cities()} className="w3-bar-item w3-button">Cities</a>
                     <a onClick={() => redirects.zones()} className="w3-bar-item w3-button">Zones</a>
+                    <a onClick={() => redirects.apartments()} className="w3-bar-item w3-button">Apartments</a>
                 </>
                 }
                     <div className="w3-right w3-hide-small">

@@ -1,16 +1,29 @@
-import React, { useEffect } from 'react';
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
 import { useApartments } from '../../../../hooks/useApartments';
 import { useZones } from '../../../../hooks/useZones';
+import { useContext } from 'react';
+import AuthContext from '../../../../context/AuthContext';
 import { useCities } from '../../../../hooks/useCities';
 import Carousel from 'react-bootstrap/Carousel';
 import apartmentdetails from './Apartment_details.module.css'
+import "react-datepicker/dist/react-datepicker.css";
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+import DatePickerModal from '../../../../components/Client/Apartments/datepicker_modal';
+import { useReservation } from "../../../../hooks/useReservation";
 
 export default function Apartment_details() {
+    const { user, isAuth } = useContext(AuthContext);
+    const { isCorrect, useReservationApartment } = useReservation();
+    const navigate = useNavigate();
     const { slug } = useParams();
     const { useOneApartment, oneApartment } = useApartments();
     const { useOneZoneByApartment, oneZoneByApartment } = useZones();
     const { useOneCityByZone, oneCityByZone } = useCities();
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     useEffect(() => {
         useOneApartment(slug);
@@ -24,16 +37,27 @@ export default function Apartment_details() {
         useOneCityByZone( oneZoneByApartment.city )
     }, [oneZoneByApartment]);
 
-    const handleReserve = () => {
-        console.log(oneApartment);
-    }; 
+    const ManageReservation = () => {
+        if(isAuth){
+            handleShow();
+        }
+        else{
+            console.log("No estas logueado");
+            // toast("Wow so easy!");
+            // <ToastContainer />
+            setTimeout(() => {
+            navigate('/login');
+            }, 2000);
+        }
+    }
 
-    console.log(oneCityByZone);
-
+    const emit_data = (dates) => {
+        useReservationApartment({ f_ini: dates.formattedStart, f_end: dates.formattedEnd ,apartment_id: oneApartment.id});        
+    }
 
     return (
         <>
-            <br /><br /><br /><br /><br />
+            <br/><br/><br /><br/><br/>
             <div className={apartmentdetails.ajustar}>
                 <div className="row">
                     <div className={`col-md-6 ${apartmentdetails.carouselContainer}`}>
@@ -41,7 +65,7 @@ export default function Apartment_details() {
                             {oneApartment.apartment_images && oneApartment.apartment_images.map((image, index) => (
                                 <Carousel.Item key={index}>
                                     <img
-                                        className={`d-block w-100 ${apartmentdetails.carouselImage}`} // Aplica los estilos a la imagen
+                                        className={`d-block w-100 ${apartmentdetails.carouselImage}`}
                                         src={image}
                                         alt={`Slide ${index + 1}`}
                                     />
@@ -85,8 +109,9 @@ export default function Apartment_details() {
                                 </tbody>
                             </table>
                             <div className={apartmentdetails.buttonContainer}>
-                                <button onClick={handleReserve}>Reservar</button>
-                            </div>                        
+                                <button className="btn btn-primary" onClick={ManageReservation}>Reservar</button>
+                                <DatePickerModal show={show} handleClose={handleClose} onAddRevervation={emit_data}/>
+                            </div> 
                         </div>
                     </div>
                 </div>
