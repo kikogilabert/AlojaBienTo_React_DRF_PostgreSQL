@@ -13,15 +13,20 @@ import Zone_Cli from '../pages/Client/Zone/Zone'
 //ADMIN-Zones
 import Zone from '../pages/Admin/Zones/zone';
 
-//LOGIN
-import Login from '../pages/Login/login_register';
+
 //CLIENT-Apartments
 import Apartment_Cli from '../pages/Client/Apartment/apartment.jsx'
 //ADMIN-Apartments
-import Apartemnt from '../pages/Admin/Apartment/apartment.jsx';
+import Apartment from '../pages/Admin/Apartment/apartment.jsx';
+
+//ADMIN-Reservations
+import Reservations from '../pages/Admin/Reservation/reservation.jsx';
+//LOGIN
+import Login from '../pages/Login/login_register';
 
 //DETAILS_APARTMENT
 import Apartment_details from '../pages/Client/Apartment/Details/apartment_details.jsx'
+
 //Guards
 import AuthGuard from '../services/guards/AuthGuard';
 import AdminGuard from '../services/guards/AdminGuard';
@@ -43,6 +48,7 @@ export function AppRouter() {
           <Routes>
             <Route index path="/" element={ <Navigate to="/home" /> } />
             <Route path="/home" element={ <Home /> } />
+
             {/* Client */}
             <Route path="/cities" element={ <City_Cli /> } />
             <Route path='/zones' element={ <Zone_Cli/>} />
@@ -50,13 +56,16 @@ export function AppRouter() {
             <Route path="/apartments/:slug" element={<Apartment_Cli/>}/>
             <Route path="/apartments/" element={<Apartment_Cli/>}/>
             <Route path="/apartment_details/:slug" element={<Apartment_details/>}/>
+
             {/* Admin */}
             <Route element={<AdminGuard/>}>
               <Route path="/admin-cities" element={ <City /> } />
               <Route path="/admin-zones" element={ <Zone /> } />
-              <Route path='/admin-apartments' element={ <Apartemnt /> } />
+              <Route path='/admin-apartments' element={ <Apartment /> } />
+              <Route path='/admin-reservations' element={ <Reservations /> } />
             </Route>
-              {/* Login */}
+
+            {/* Login */}
             <Route path="/login" element={ <Login /> } />
             
             {/* Profile */}
