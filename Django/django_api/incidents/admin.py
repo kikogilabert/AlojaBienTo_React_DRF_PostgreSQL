@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import IncidenceApartment, Notification
 
-# Register your models here.
+admin.site.register(IncidenceApartment)
+admin.site.register(Notification)
