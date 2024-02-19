@@ -25,12 +25,12 @@ const Login = () => {
 
 
     const emit_register = (userData) => {
-        console.log(userData.username, userData.email, userData.password);
+        // console.log(userData.username, userData.email, userData.password);
         useRegister(userData);
     }
 
     const emit_login = (userdata) => {
-            console.log(userdata.username, userdata.password);
+            // console.log(userdata.username, userdata.password);
             useLogin(userdata);
     }
 
@@ -42,7 +42,6 @@ const Login = () => {
         <br />
             <h1>Register</h1>
             <LoginModal form_type={form_type} show={show} onAddUser={emit_register} onLoginUser={emit_login} handleClose={handleClose} />
-            {/* <br /> useRegister={useRegister} */}
         <br />
         <br />
         <br />

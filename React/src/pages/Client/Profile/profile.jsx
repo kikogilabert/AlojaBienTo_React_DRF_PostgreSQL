@@ -1,85 +1,124 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useContext } from "react";
 import { useNavigate, useParams } from 'react-router-dom';
 import AuthService from '../../../services/AuthService';
 import AuthContext from '../../../context/AuthContext';
 import { useAuth } from '../../../hooks/useAuth';
+import { useReservation } from '../../../hooks/useReservation';
+import { useApartments } from '../../../hooks/useApartments'
 import ProfileCSS from './profile.module.css';
-// import { useProfile } from '../../../hooks/useAuth';
-
 
 export default function Profile() {
     const id = useParams();
-    // console.log(id);
-    // const { isCorrect, profile, useUpdateProfile } = useAuth(id);
-    // const [profile, setProfile]
-    const {user} = useContext(AuthContext);
+    const [type_list, setTypeList] = useState(0); // Estado para almacenar el valor de type_list
+    const { useReservationByUser, reservations, useDeleteReservation } = useReservation();
+    const { user } = useContext(AuthContext);
     const { useProfile, profile } = useAuth();
-
 
     useEffect(function () {
         useProfile(id);
-      }, [])
-    console.log(profile);
-    
-  
+        useReservationByUser();
+    }, []);
+
+    console.log(reservations);
+
     const navigate = useNavigate();
+
+    const handleclickdelete = (id) => {
+      useDeleteReservation(id);
+    }
+
+    const handleItemClick = (type) => {
+        switch (type) {
+            case 'Reservation':
+                setTypeList(0);
+                break;
+            case 'Seen Notification':
+                setTypeList(1);
+                break;
+            case 'Not Seen Notification':
+                setTypeList(2);
+                break;
+            default:
+                setTypeList(0);
+        }
+    };
+
     return (
+        
         <div>
-        <header>
-          <div className={ProfileCSS.container}>
-            <div className={ProfileCSS.profile}>
-              <div className={ProfileCSS.profileimage}>
-                <img src={profile.image} alt="" />
-              </div>
-      
-              <div className={ProfileCSS.profileusersettings}>
-                <h1 className={ProfileCSS.profileusername}>
-                  Welcome back <span className={ProfileCSS.profileusername2}>{profile.name}</span>!
-                </h1>
-                <br />
-                <div className={ProfileCSS.profileemail}>{user.email}</div>
-                <br />
-              </div>
-      
-              <div className={ProfileCSS.profilestats}>
-                <ul>
-                  <li>
-                    <span className={ProfileCSS.profilestatcount}></span> Reservations
-                  </li>
-                  <li>
-                    <span className={ProfileCSS.profilestatcount}></span> Seen Notifications
-                  </li>
-                  <li>
-                    <span className={ProfileCSS.profilestatcount}></span> Not seen Notifications
-                  </li>
-                </ul>
-              </div>
-            </div>
-      
-            <div className={ProfileCSS.reservationcards}>
-              <h1>reservation card</h1>
-              {/* <div className="alinear-texto" style={{ display: state.reservations.length === 0 ? 'block' : 'none' }}>
-                No reservations to display.
-              </div> */}
-               {/* <div style={{ display: state.reservations.length > 0 ? 'block' : 'none' }}>
-                {state.reservations.map((reservation) => (
-                  <div key="" className={ProfileCSS.card}>
-                    <div className={ProfileCSS.cardInfo}>
-                      <h2>Pista : P</h2>
-                      <p>Fecha : </p>
-                      <div className={ProfileCSS.buttons}>
-                        <button className={ProfileCSS.editButton}>Edit Reservation <FontAwesomeIcon icon="pen-to-square" /></button>
-                        <button className={ProfileCSS.deleteButton}>Delete <FontAwesomeIcon icon="trash" /></button>
-                      </div>
+          <br></br>
+          <br></br>
+          <br></br>
+            <header>
+                <div className={ProfileCSS.container}>
+                    <div className={ProfileCSS.profile}>
+                        <div className={ProfileCSS.profileimage}>
+                            <img src={profile.image} alt="" />
+                        </div>
+
+                        <div className={ProfileCSS.profileusersettings}>
+                            <h1 className={ProfileCSS.profileusername}>
+                                Welcome back <span className={ProfileCSS.profileusername2}>{profile.name}</span>!
+                            </h1>
+                            <br/>
+                            <div className={ProfileCSS.profileemail}>{user.email}</div>
+                            <br/>
+                        </div>
+
+                        <div className={ProfileCSS.profilestats}>
+                            <ul>
+                                <li onClick={() => handleItemClick('Reservation')}>
+                                    <span className={ProfileCSS.profilestatcount}></span> Reservation
+                                </li>
+                                <li onClick={() => handleItemClick('Seen Notification')}>
+                                    <span className={ProfileCSS.profilestatcount}></span> Seen Notifications
+                                </li>
+                                <li onClick={() => handleItemClick('Not Seen Notification')}>
+                                    <span className={ProfileCSS.profilestatcount}></span> Not seen Notifications
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                  </div>
-                ))}
-              </div> */}
-            </div>
-          </div>
-        </header>
-      </div>
-      
+                    <div className={ProfileCSS.reservationcards}>
+                        {type_list === 0 && reservations.map((reservation, index) => (
+                            <div key={index} className={ProfileCSS.card}>
+                                <div className={ProfileCSS.cardinfo}>
+                                    <h2>Reservation of apartment {reservation.apartment_id}</h2>
+                                    <p>Check-in date: {reservation.f_ini}</p>
+                                    <p>Check-out date: {reservation.f_end}</p>                                
+                                    <div className={ProfileCSS.buttons}>
+                                        <button 
+                                            className={ProfileCSS.deletebutton} 
+                                            onClick={() => handleclickdelete(reservation.id)} // Llama a handleclickdelete con el ID de la reserva
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                        {type_list === 1 && (
+                            <div className={ProfileCSS.card_info}>
+                                <h2>Título para type_list igual a 1</h2>
+                                <p>Descripción para type_list igual a 1</p>
+                                <div className={ProfileCSS.buttons}>
+                                    <button className={ProfileCSS.delete_button}>Delete</button>
+                                </div>
+                            </div>
+                        )}
+                        {type_list === 2 && (
+                            <div className={ProfileCSS.card_info}>
+                                <h2>Título para type_list igual a 2</h2>
+                                <p>Descripción para type_list igual a 2</p>
+                                <div className={ProfileCSS.buttons}>
+                                    <button className={ProfileCSS.delete_button}>Delete</button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </header>
+        </div>
     );
 }

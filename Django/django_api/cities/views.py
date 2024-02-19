@@ -232,6 +232,17 @@ class ApartmentView(viewsets.GenericViewSet):
             except Apartment.DoesNotExist: 
                 return JsonResponse({'message': 'The Apartment does not exist'}, status=status.HTTP_404_NOT_FOUND)
             
+        
+        #______________________________GET ONE APARTMENT_______________________________________________________________
+        
+        def getOneApartmentById(self,request, id):
+            try: 
+                apartment = Apartment.objects.get(pk=id)
+                apartment_serializer = ApartmentSerializer(apartment) 
+                return JsonResponse(apartment_serializer.data)
+            except Apartment.DoesNotExist: 
+                return JsonResponse({'message': 'The Apartment does not exist'}, status=status.HTTP_404_NOT_FOUND)
+            
         #______________________________DELETE ONE APARTMENT_______________________________________________________________
         
         def delete(self, request, slug_apartment):

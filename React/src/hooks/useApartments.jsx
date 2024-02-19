@@ -6,9 +6,7 @@ import { useNavigate } from "react-router-dom";
 export function useApartments() {
 
 const { apartments, setApartments } = useContext(ApartmentContext);
-
 const [oneApartment, setOneApartment] = useState({});
-
 const navigate = useNavigate();
 
 const useOneApartment = useCallback((slug) => {

@@ -13,12 +13,8 @@ export function AuthContextProvider({ children }) {
     const [token, setToken] = useState(JwtService.getToken ? JwtService.getToken : false);
     const [isAuth, setIsAuth] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
-    // const { useLogout } = useAuth();
 
     useEffect(() => {
-        // JwtService.destroyToken();
-        // JwtService.destroyRefreshToken();
-        // console.log(token);
         if (token) {
             AuthService.getUser()
                 .then(({ data, status }) => {
@@ -28,33 +24,15 @@ export function AuthContextProvider({ children }) {
                         setIsAuth(true);
                         setIsAdmin(data.user.type === 'admin');
                         // console.log(data.user)
-                        console.log(isAuth);
-                        console.log(isAdmin);
+                        // console.log(isAuth);
+                        // console.log(isAdmin);
                     }
                 })
                 .catch(({ error }) => {
-                    // console.log('hola refresh');
-                    // if (JwtService.getRefreshToken()) {
-                    //     refresh_token();
-                    // } else {
-                        logout();
-                    // }
+                    logout();
                 });
         }
     }, [token]);
-
-    // const refresh_token = async () => {
-    //     JwtService.destroyToken();
-    //     await AuthService.refreshToken()
-    //         .then(({ data }) => {
-    //             setToken(data.token);
-    //             JwtService.saveToken(data.token);
-    //             navigate('/home');
-    //         })
-    //         .catch(({ }) => {
-    //             logout();
-    //         });
-    // }
 
     const logout = useCallback(() => {
         JwtService.destroyToken();

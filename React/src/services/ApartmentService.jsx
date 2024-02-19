@@ -19,6 +19,9 @@ const CitiesService = {
     },
     getApartmentsByZone(slug) {
         return api().get(`apartments/zone/${slug}`)
+    },
+    getOneApartmentById(id) {
+        return api().get(`apartment_id/${id}`)
     }
 };
 export default CitiesService;

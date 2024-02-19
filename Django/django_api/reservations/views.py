@@ -27,6 +27,11 @@ class ReservationsView(viewsets.GenericViewSet):
         reservations_serializer = ReservationSerializer(reservations_query, many=True)
     
         return Response(reservations_serializer.data, status=status.HTTP_200_OK)
+    
+    def delete(self, request, id):
+        reservation = Reservation.objects.get(id=id)
+        reservation.delete()
+        return Response({'data': 'Reservation deleted successfully'})
 
 class ReservationAdminView(viewsets.GenericViewSet):
     permission_classes = [IsAdmin]
@@ -35,8 +40,3 @@ class ReservationAdminView(viewsets.GenericViewSet):
         data = Reservation.objects.all()
         serializer = ReservationSerializer(data, many=True)
         return Response(serializer.data)
-
-    def delete(self, request, id):
-        reservation = Reservation.objects.get(id=id)
-        reservation.delete()
-        return Response({'data': 'Reservation deleted successfully'})

@@ -26,6 +26,7 @@ urlpatterns = [
     path('apartments/', ApartmentView.as_view({'get': 'getAllApartments'})),
     path('apartments/<str:slug_apartment>', ApartmentView.as_view({'get': 'getOneApartment'})),
     path('apartments/zone/<str:slug_zone>', ApartmentView.as_view({'get': 'getApartmentsByZone'})),
+    path('apartment_id/<str:id>', ApartmentView.as_view({'get': 'getOneApartmentById'})),
     path('apartments/', ApartmentView.as_view({'post': 'post'})),
     path('apartments/<str:slug_apartment>', ApartmentView.as_view({'delete': 'delete'})),
     path('apartments/<str:slug_apartment>', ApartmentView.as_view({'put': 'put'})),

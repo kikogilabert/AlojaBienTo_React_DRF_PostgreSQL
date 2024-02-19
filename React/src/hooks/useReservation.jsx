@@ -22,10 +22,9 @@ export function useReservation() {
         }
     }, []);
 
-
     //GET RESERVATION BY USER
-    const useReservationByUser = (id) => {
-        ReservationService.getReservationsByUser(id)
+    const useReservationByUser = () => {
+        ReservationService.getReservationsByUser()
             .then(({ data, status }) => {
                 if (status === 200) {
                     setReservations(data);
@@ -54,9 +53,7 @@ export function useReservation() {
         ReservationService.deleteReservation(id)
             .then(({ data, status }) => {
                 if (status === 200) {
-                    // console.log(data);
                     setReservations(reservations.filter(reservation => reservation.id !== id));
-                    // toast.success(data.data);
                 }
             })
             .catch(e => console.error(e));

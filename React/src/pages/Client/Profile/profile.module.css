@@ -1,9 +1,12 @@
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
 .reservationcards {
-  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .card {
@@ -11,7 +14,7 @@
   /* Ajusta el espacio y el tamaño según tus necesidades */
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 10px;
+  margin: 30px;
 }
 
 .alineartexto {
@@ -41,6 +44,7 @@
 
 .buttons {
   display: flex;
+  flex-direction: row-reverse;
 }
 
 .editbutton,
@@ -67,14 +71,6 @@
 *::after {
   box-sizing: border-box;
 }
-
-/* body {
-  font-family: "Open Sans", Arial, sans-serif;
-  min-height: 100vh;
-  background-color: #fafafa;
-  color: #262626;
-  /* padding-bottom: 3rem;
-} */
 
 img {
   display: block;

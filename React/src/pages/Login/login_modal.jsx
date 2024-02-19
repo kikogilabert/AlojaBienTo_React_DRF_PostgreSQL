@@ -13,45 +13,15 @@ function LoginModal({show, handleClose, onAddUser, onLoginUser}){
     // const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
 
-//   useEffect(() => {
-//       if(updatedCity) {
-//           setCity(updatedCity.name);
-//           setState(updatedCity.state );
-//           setCountry(updatedCity.country);
-//           setImage(updatedCity.image);
-//           setIsUpdate(true);
-//       }
-//   }, [updatedCity]);
-
-//   const resetData = () => {
-//     setCity(''),
-//     setState(''),
-//     setCountry(''),
-//     setImage('')
-//   }
-
-//   useEffect(() => {
-//       if(updatedCity) {
-//         setCity(updatedCity.name);
-//         setState(updatedCity.state );
-//         setCountry(updatedCity.country);
-//         setImage(updatedCity.image);
-//         setIsUpdate(true);
-//     } else{
-//         resetData();
-//         setIsUpdate(false);
-//       }
-//       }, [updatedCity]);
-
   const handleSubmit = (e) => {
-        console.log(username, email, password, form_type);    
+        // console.log(username, email, password, form_type);    
         // console.log('hola');
         if(form_type === 'login'){
             // console.log("es un login");
             const userdata = { username, password };
             onLoginUser(userdata);
         }else{
-            console.log("es un register");
+            // console.log("es un register");
             const newuserdata = { username, email, password };
             onAddUser(newuserdata);
             // resetData();
@@ -126,7 +96,7 @@ function LoginModal({show, handleClose, onAddUser, onLoginUser}){
         </Modal.Body>
       <Modal.Footer>
       {form_type === 'login' && (
-        <a onClick={handleRedirect} className='mb-3'>I don't have an account</a>
+        <a onClick={handleRedirect} className='mb-3'>I do not have an account</a>
       )}
       {form_type === 'register' && (
         <a onClick={handleRedirect} className='mb-3'>Already have an account?</a>
