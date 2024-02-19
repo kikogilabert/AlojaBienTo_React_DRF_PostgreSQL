@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'cities',
     'users',
     'reservations',
+    'incidents',
 ]
 
 MIDDLEWARE = [

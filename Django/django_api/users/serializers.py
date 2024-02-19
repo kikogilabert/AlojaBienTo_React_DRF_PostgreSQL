@@ -114,7 +114,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             user_id=user_id, 
             name= context['username'], 
             surnames="",
-            image="https://avatars.dicebear.com/api/adventurer/" + context['username'] + ".svg",
+            image="https://images.dog.ceo/breeds/bulldog-english/jager-2.jpg",
             biography="lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.")
 
         profile.save()

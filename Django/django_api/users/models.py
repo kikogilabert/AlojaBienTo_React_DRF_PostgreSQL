@@ -50,7 +50,7 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, related_name="profile")
     name = models.CharField(max_length=100)
     surnames = models.CharField(max_length=100)
-    image = models.CharField(max_length=100,blank=True, default="https://avatars.dicebear.com/api/adventurer/default.svg")
+    image = models.CharField(max_length=100,blank=True, default="https://images.dog.ceo/breeds/bulldog-english/jager-2.jpg")
     biography = models.CharField(max_length=100,blank=True, default="Hello, I'm a scoonti user")
 
     def __str__(self):
