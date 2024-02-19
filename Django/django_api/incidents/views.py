@@ -5,6 +5,7 @@ from rest_framework.permissions import (IsAuthenticated, AllowAny)
 from users.core.permissions import IsAdmin
 from .models import IncidenceApartment
 from .serializers import IncidenceApartmentSerializer
+from .serializers import NotificationSerializer
 
 class IncidenceApartmentView(viewsets.GenericViewSet):
 
@@ -46,15 +47,20 @@ class IncidentsAdminView(viewsets.GenericViewSet):
         incidence_scooter.delete()
         return Response({'data': 'Incidence deleted successfully'})
 
-# class NotificationsView(viewsets.GenericViewSet):
-#     permission_classes = [IsAuthenticated]
+class NotificationsView(viewsets.GenericViewSet):
+    permission_classes = [IsAuthenticated]
 
-#     def get(self, request):
-#         notifications_serializer = NotificationSerializer.getUserNotification(request.user)
-#         notifications = NotificationSerializer(notifications_serializer, many=True)
-#         return Response(notifications.data)
+    def getNotifications(self, request):
+        notifications_serializer = NotificationSerializer.getUserNotification(request.user)
+        notifications = NotificationSerializer(notifications_serializer, many=True)
+        return Response(notifications.data)
 
-#     def seenNotification(self, request, id):
-#         serializer_context = { 'username': request.user, 'id': id }
-#         serializer = NotificationSerializer.seeNotification(context=serializer_context)
-#         return Response(NotificationSerializer.to_notification(serializer))
+    def seeNotification(self, request, id):
+        serializer_context = { 'username': request.user, 'id': id }
+        serializer = NotificationSerializer.seeNotification(context=serializer_context)
+        return Response(NotificationSerializer.to_notification(serializer))
+    
+    def Seen_Notification(self, request):
+        notifications_serializer = NotificationSerializer.GetSeen_Notification(request.user)
+        notifications = NotificationSerializer(notifications_serializer, many=True)
+        return Response(notifications.data)

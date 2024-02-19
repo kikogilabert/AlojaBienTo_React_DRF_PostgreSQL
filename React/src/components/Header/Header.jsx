@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightToBracket } from '@fortawesome/free-solid-svg-icons';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../hooks/useAuth';
+import NotificationBell from './NotificationBell';
 
 export default function Header() {
 
@@ -57,9 +58,11 @@ export default function Header() {
                 </>
                 }
                     <div className="w3-right w3-hide-small">
-                {(isAuth || isAdmin) && <>   
+                {(isAuth || isAdmin) && <>  
+                    <a onClick={() => redirects.profile()} className="w3-bar-item w3-button"> <NotificationBell/></a>
                     <a onClick={() => redirects.profile()} className="w3-bar-item w3-button"> <FontAwesomeIcon icon={faUser} /> {user.username} </a>
                     <a onClick={() => redirects.logout()} className="w3-bar-item w3-button">Logout <FontAwesomeIcon icon={faArrowRightToBracket} /></a>
+
                     {/* {isAuth && <a onClick={() => logout()} className="w3-bar-item w3-button">Logout</a>} */}
                     </>} 
                 </div>
