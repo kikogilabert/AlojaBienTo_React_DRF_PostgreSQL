@@ -14,6 +14,7 @@ urlpatterns = [
     path('notifications', NotificationsView.as_view({"get": "getNotifications"})),
     path('notifications/<int:id>', NotificationsView.as_view({"put": "seeNotification"})),
     path('seen_notifications', NotificationsView.as_view({"get": "Seen_Notification"})),
+    path('count_notifications', NotificationsView.as_view({"get": "countNotifications"})),
 
 
 ]

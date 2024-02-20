@@ -54,6 +54,10 @@ class NotificationsView(viewsets.GenericViewSet):
         notifications_serializer = NotificationSerializer.getUserNotification(request.user)
         notifications = NotificationSerializer(notifications_serializer, many=True)
         return Response(notifications.data)
+    
+    def countNotifications(self, request):
+        notifications_serializer = NotificationSerializer.countNotifications(request.user)
+        return Response(notifications_serializer)
 
     def seeNotification(self, request, id):
         serializer_context = { 'username': request.user, 'id': id }
