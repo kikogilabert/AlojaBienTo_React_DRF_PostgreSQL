@@ -7,25 +7,36 @@ import { useAuth } from '../../../hooks/useAuth';
 import { useReservation } from '../../../hooks/useReservation';
 import { useApartments } from '../../../hooks/useApartments'
 import ProfileCSS from './profile.module.css';
+import IncidenceModal from './IncidenceModal';
 
 export default function Profile() {
     const id = useParams();
-    const [type_list, setTypeList] = useState(0); // Estado para almacenar el valor de type_list
+    const [type_list, setTypeList] = useState(0);
     const { useReservationByUser, reservations, useDeleteReservation } = useReservation();
     const { user } = useContext(AuthContext);
     const { useProfile, profile } = useAuth();
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(function () {
         useProfile(id);
         useReservationByUser();
     }, []);
 
-    console.log(reservations);
+    const handleButtonClick = (id) => {
+        setShowModal(true);
+        console.log(id);
+    };
 
-    const navigate = useNavigate();
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
 
     const handleclickdelete = (id) => {
-      useDeleteReservation(id);
+        useDeleteReservation(id);
+    }
+
+    const handleclickIncidence = (id) => {
+        console.log(id);
     }
 
     const handleItemClick = (type) => {
@@ -47,9 +58,9 @@ export default function Profile() {
     return (
         
         <div>
-          <br></br>
-          <br></br>
-          <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <header>
                 <div className={ProfileCSS.container}>
                     <div className={ProfileCSS.profile}>
@@ -89,10 +100,17 @@ export default function Profile() {
                                     <p>Check-out date: {reservation.f_end}</p>                                
                                     <div className={ProfileCSS.buttons}>
                                         <button 
-                                            className={ProfileCSS.deletebutton} 
-                                            onClick={() => handleclickdelete(reservation.id)} // Llama a handleclickdelete con el ID de la reserva
+                                            className={ProfileCSS.incidencebutton}
+                                            onClick={() => handleButtonClick(reservation.apartment_id)}
                                         >
-                                            Delete
+                                            Incidence
+                                        </button>
+                                        <IncidenceModal show={showModal} handleClose={handleCloseModal} id_apartment={reservation.apartment_id} />
+                                        <button 
+                                            className={ProfileCSS.deletebutton} 
+                                            onClick={() => handleclickdelete(reservation.id)}
+                                        >
+                                            Cancel
                                         </button>
                                     </div>
                                 </div>

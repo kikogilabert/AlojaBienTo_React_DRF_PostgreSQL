@@ -56,7 +56,7 @@ function DatePickerModal({show, handleClose, onAddRevervation}) {
                     Close
                 </Button>
                 <Button variant="primary" type="submit" onClick={HandleReservation}>
-                    Submit Reservation
+                    Save
                 </Button>
             </Modal.Footer>
         </Modal>

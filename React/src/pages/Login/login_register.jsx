@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import LoginModal from "./login_modal";
+import LoginCSS from "./login.module.css"
 
 const Login = () => {
     const { isCorrect, useRegister, useLogin } = useAuth();
@@ -36,17 +37,9 @@ const Login = () => {
 
     return (
         <>
-        <br />
-        <br />
-        <br />
-        <br />
-            <h1>Register</h1>
-            <LoginModal form_type={form_type} show={show} onAddUser={emit_register} onLoginUser={emit_login} handleClose={handleClose} />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+            <div className={LoginCSS.background}>
+                <LoginModal form_type={form_type} show={show} onAddUser={emit_register} onLoginUser={emit_login} handleClose={handleClose} />
+            </div>        
         </>
     )
 }

@@ -47,7 +47,7 @@
   flex-direction: row-reverse;
 }
 
-.editbutton,
+.incidencebutton,
 .deletebutton {
   padding: 8px;
   margin-right: 8px;
@@ -56,7 +56,7 @@
   border-radius: 4px;
 }
 
-.editbutton {
+.incidencebutton {
   background-color: #3498db;
   color: #fff;
 }

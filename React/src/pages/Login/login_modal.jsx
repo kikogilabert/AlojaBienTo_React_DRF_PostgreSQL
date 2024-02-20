@@ -14,17 +14,12 @@ function LoginModal({show, handleClose, onAddUser, onLoginUser}){
     // const handleShow = () => setShow(true);
 
   const handleSubmit = (e) => {
-        // console.log(username, email, password, form_type);    
-        // console.log('hola');
         if(form_type === 'login'){
-            // console.log("es un login");
             const userdata = { username, password };
             onLoginUser(userdata);
         }else{
-            // console.log("es un register");
             const newuserdata = { username, email, password };
             onAddUser(newuserdata);
-            // resetData();
         }
   };
 
@@ -41,12 +36,10 @@ function LoginModal({show, handleClose, onAddUser, onLoginUser}){
 
   const handleUsernameNameChange = (e) => {
     setUsername(e.target.value);
-    // console.log('Username: ' + e.target.value);
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-    // console.log(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
