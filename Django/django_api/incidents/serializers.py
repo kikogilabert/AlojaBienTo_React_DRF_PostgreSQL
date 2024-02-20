@@ -114,3 +114,11 @@ class NotificationSerializer(serializers.ModelSerializer):
 
         notification = Notification.objects.filter(user_id=user.id, seen=True)
         return notification
+    
+    def countNotifications(username):
+        user = User.objects.get(username=username)
+        if user is None:
+            raise serializers.ValidationError('User not found')
+
+        notification = Notification.objects.filter(user_id=user.id, seen=False).count()
+        return notification
