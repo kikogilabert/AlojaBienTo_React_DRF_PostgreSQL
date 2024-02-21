@@ -25,8 +25,8 @@ export default function zones() {
 
     return (
     <div className={ZoneModuleCSS.main}>
-        <h1>ZONES</h1>
-        <Button variant="success" onClick={handleShow}>
+        <h1>List Zones</h1>
+        <Button style={{marginBottom: '10px'}} variant="success" onClick={handleShow}>
             Create
         </Button>
         <ZonesModal onAddZone={emit_data} show={show} updatedZone={updatedZone} handleClose={handleClose}/>

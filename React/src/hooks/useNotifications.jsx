@@ -13,7 +13,7 @@ const useSeenNotifications = () => {
     NotificationsService.get_S_Notifications()
         .then(({ data, status }) => {
             if (status === 200) {
-                console.log(data);
+                // console.log(data);
                 setNotifications(data);
             }
         })
@@ -55,8 +55,19 @@ const useCountSeenNotifications = () => {
         .catch(e => console.error(e));
 };
 
+const useSetSeenNotifications = (id) => {
+    NotificationsService.see_notification(id)
+        .then(({ data, status }) => {
+            if (status === 200) {
+                console.log(data);
+                setCount_notifications(count_notifications - 1);
+                setNotifications(notifications.filter(notification => notification.id !== id));
+            }
+        })
+        .catch(e => console.error(e));
+};
 
-    return { notifications, count_notifications, setCount_notifications, useCountSeenNotifications, setNotifications, useNotSeenNotifications, useSeenNotifications, useCountNotSeenNotifications};
+    return { notifications, count_notifications, useSetSeenNotifications, setCount_notifications, useCountSeenNotifications, setNotifications, useNotSeenNotifications, useSeenNotifications, useCountNotSeenNotifications};
 };
 
 export default useNotifications;

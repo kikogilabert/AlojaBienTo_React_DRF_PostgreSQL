@@ -18,6 +18,13 @@ export default function Profile() {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(function () {
+        if(localStorage.getItem('type_list') !== null) {
+            setTypeList(2);
+        }    
+    }, []);
+    
+
+    useEffect(function () {
         useProfile(id);
         useReservationByUser();
     }, []);

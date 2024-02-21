@@ -1,21 +1,22 @@
 import React from 'react';
-import { useReservation } from '../../../hooks/useReservation';
+// import { useIncidents } from '../../../hooks/useIncidents';
 import Table from 'react-bootstrap/Table';
 
-function ListReservations() {
-    const {reservations, useDeleteReservation } = useReservation();
+function ListIncidents() {
+    // const {incidents, useDeleteIncidents } = useIncidents();
 
-    const deleteReservation = (id) => {
-        useDeleteReservation(id);
-    }
+    // const deleteReservation = (id) => {
+    //     useDeleteReservation(id);
+    // }
 
 
     return (
         <div>
             <br />
+            <h1>Component Incidence</h1>
             <div style={{ display: 'flex', marginTop:'10px' }}>
-            <Table striped bordered hover responsive style={{width: '1475px',}}>
-                    <thead>
+            <Table striped bordered hover responsive>
+                    {/* <thead>
                         <tr >
                             <th scope="col">ID</th>
                             <th scope="col">Fecha Inicio</th>
@@ -36,11 +37,11 @@ function ListReservations() {
                                 <td><button className="btn btn-danger" onClick={() => deleteReservation(reservation.id)}>DELETE</button></td>
                             </tr>
                         ))}
-                    </tbody>
+                    </tbody> */}
                 </Table>
             </div>
         </div>
     );
 }
 
-export default ListReservations;
+export default ListIncidents;

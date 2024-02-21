@@ -26,6 +26,7 @@ export default function Header() {
         admin_zones: () => navigate('/admin-zones'),
         admin_apartments: () => navigate('/admin-apartments'),
         admin_reservations: () => navigate('/admin-reservations'),
+        admin_incidents: () => navigate('/admin-incidents'),
         
         login: () => navigate('/login'),
         logout: () => {
@@ -44,10 +45,12 @@ export default function Header() {
             <div className="w3-bar w3-white w3-wide w3-padding w3-card">
             <a onClick={() => redirects.home()} className="w3-bar-item w3-button"><b>Aloja</b>BienTo</a>
                 {isAdmin && <>
-                    <a  onClick={() => redirects.admin_cities()} className="w3-bar-item w3-button">Admin Cities</a>
-                    <a  onClick={() => redirects.admin_zones()} className="w3-bar-item w3-button">Admin Zones</a>
-                    <a onClick={() => redirects.admin_apartments()} className="w3-bar-item w3-button">Admin Apartments</a>
-                    <a onClick={() => redirects.admin_reservations()} className="w3-bar-item w3-button">Admin Reservations</a>
+                    <a  onClick={() => redirects.admin_cities()} className="w3-bar-item w3-button">Adm-Cities</a>
+                    <a  onClick={() => redirects.admin_zones()} className="w3-bar-item w3-button">Adm-Zones</a>
+                    <a onClick={() => redirects.admin_apartments()} className="w3-bar-item w3-button">Adm-Apartments</a>
+                    <a onClick={() => redirects.admin_reservations()} className="w3-bar-item w3-button">Adm-Reservations</a>
+                    <a onClick={() => redirects.admin_incidents()} className="w3-bar-item w3-button">Adm-Incidents</a>
+
                 </>}
                 {!isAdmin && 
                 <>
@@ -59,7 +62,7 @@ export default function Header() {
                 }
                     <div className="w3-right w3-hide-small">
                 {(isAuth || isAdmin) && <>  
-                    <a onClick={() => redirects.profile()} className="w3-bar-item w3-button"> <NotificationBell/></a>
+                    <a className="w3-bar-item w3-button"> <NotificationBell/></a>
                     <a onClick={() => redirects.profile()} className="w3-bar-item w3-button"> <FontAwesomeIcon icon={faUser} /> {user.username} </a>
                     <a onClick={() => redirects.logout()} className="w3-bar-item w3-button">Logout <FontAwesomeIcon icon={faArrowRightToBracket} /></a>
 
