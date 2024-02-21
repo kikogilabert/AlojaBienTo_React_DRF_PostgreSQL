@@ -5,14 +5,19 @@ import AuthService from '../../../services/AuthService';
 import AuthContext from '../../../context/AuthContext';
 import { useAuth } from '../../../hooks/useAuth';
 import { useReservation } from '../../../hooks/useReservation';
-import { useApartments } from '../../../hooks/useApartments'
+// import { useApartments } from '../../../hooks/useApartments'
+import { useNotifications } from '../../../hooks/useNotifications';
 import ProfileCSS from './profile.module.css';
 import IncidenceModal from './IncidenceModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faPersonRunning } from '@fortawesome/free-solid-svg-icons';
 
 export default function Profile() {
     const id = useParams();
     const [type_list, setTypeList] = useState(0);
     const { useReservationByUser, reservations, useDeleteReservation } = useReservation();
+    const { seenNotifications, notSeenNotifications , useSeenNotifications, useNotSeenNotifications, useSetSeenNotifications, useDeleteNotification } = useNotifications();
     const { user } = useContext(AuthContext);
     const { useProfile, profile } = useAuth();
     const [showModal, setShowModal] = useState(false);
@@ -23,12 +28,19 @@ export default function Profile() {
         }    
     }, []);
     
-
     useEffect(function () {
         useProfile(id);
         useReservationByUser();
     }, []);
 
+    useEffect(function () {
+        useSeenNotifications();
+    },[type_list===1]);
+
+    useEffect(function () {
+        useNotSeenNotifications();
+    },[type_list===2]);
+    
     const handleButtonClick = (id) => {
         setShowModal(true);
         console.log(id);
@@ -42,8 +54,12 @@ export default function Profile() {
         useDeleteReservation(id);
     }
 
-    const handleclickIncidence = (id) => {
-        console.log(id);
+    const handleSetSeenNotification = (id) => {
+        useSetSeenNotifications(id);
+    }
+
+    const handleDeleteNotification = (id) => {
+        useDeleteNotification(id);
     }
 
     const handleItemClick = (type) => {
@@ -123,24 +139,55 @@ export default function Profile() {
                                 </div>
                             </div>
                         ))}
-                        {type_list === 1 && (
-                            <div className={ProfileCSS.card_info}>
-                                <h2>Título para type_list igual a 1</h2>
-                                <p>Descripción para type_list igual a 1</p>
-                                <div className={ProfileCSS.buttons}>
-                                    <button className={ProfileCSS.delete_button}>Delete</button>
+                        {type_list === 1 && seenNotifications.map((notification, index) => (
+                            <div key={index} className={ProfileCSS.card}>
+                                <div className={ProfileCSS.cardinfo}>
+                                    <h4>{notification.desc}</h4>
+                                        {notification.desc.includes("resolved") ? (
+                                            <div style={{ marginLeft: '20px' , marginTop: '20px' }}>
+                                                <FontAwesomeIcon icon={faThumbsUp} size="4x" />
+                                            </div>                                    
+                                    ) : notification.desc.includes("in progress") ? (
+                                            <div style={{ marginLeft: '20px' , marginTop: '20px' }}>
+                                                <FontAwesomeIcon icon={faPersonRunning} size="4x" />
+                                            </div>
+                                    ) : null}
+                                    <div className={ProfileCSS.buttons}>
+                                        <button
+                                            className={ProfileCSS.delete_notif} 
+                                            onClick={() => handleDeleteNotification(notification.id)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        )}
-                        {type_list === 2 && (
-                            <div className={ProfileCSS.card_info}>
-                                <h2>Título para type_list igual a 2</h2>
-                                <p>Descripción para type_list igual a 2</p>
-                                <div className={ProfileCSS.buttons}>
-                                    <button className={ProfileCSS.delete_button}>Delete</button>
+                            
+                        ))}
+                        {type_list === 2 && notSeenNotifications.map((notification, index) => (
+                            <div key={index} className={ProfileCSS.card}>
+                                <div className={ProfileCSS.cardinfo}>
+                                    <h4>{notification.desc}</h4>
+                                        {notification.desc.includes("resolved") ? (
+                                            <div style={{ marginLeft: '20px' , marginTop: '20px' }}>
+                                                <FontAwesomeIcon icon={faThumbsUp} size="4x" />
+                                            </div>                                    
+                                    ) : notification.desc.includes("in progress") ? (
+                                            <div style={{ marginLeft: '20px' , marginTop: '20px' }}>
+                                                <FontAwesomeIcon icon={faPersonRunning} size="4x" />
+                                            </div>
+                                    ) : null}                       
+                                    <div className={ProfileCSS.buttons}>
+                                        <button
+                                            className={ProfileCSS.delete_notif} 
+                                            onClick={() => handleSetSeenNotification(notification.id)}
+                                        >
+                                            Mark as Seen
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        )}
+                        ))}
                     </div>
                 </div>
             </header>

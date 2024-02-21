@@ -59,6 +59,23 @@
 .incidencebutton {
   background-color: #3498db;
   color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.mark_ass_seen {
+  background-color: #2fbe03;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+
+}
+
+.delete_notif {
+  background-color: #e74c3c;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .deletebutton {

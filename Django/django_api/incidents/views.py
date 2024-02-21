@@ -68,3 +68,8 @@ class NotificationsView(viewsets.GenericViewSet):
         notifications_serializer = NotificationSerializer.GetSeen_Notification(request.user)
         notifications = NotificationSerializer(notifications_serializer, many=True)
         return Response(notifications.data)
+    
+    def delete(self, request, id):
+        notification = Notification.objects.get(id=id)
+        notification.delete()
+        return Response({'data': 'Notification deleted successfully'})

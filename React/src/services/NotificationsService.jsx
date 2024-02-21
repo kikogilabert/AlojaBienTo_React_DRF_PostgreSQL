@@ -20,6 +20,10 @@ const NotificationsService = {
 
     see_notification(id) {
         return api().put(`/notifications/${id}`);
+    },
+
+    delete_notification(id) {
+        return api().delete(`seen_notifications/${id}`);
     }
 
 };
