@@ -10,22 +10,25 @@ import ProfileCSS from './profile.module.css';
 
 export default function Profile() {
     const id = useParams();
-    const [type_list, setTypeList] = useState(0); // Estado para almacenar el valor de type_list
+    const [type_list, setTypeList] = useState(0);
     const { useReservationByUser, reservations, useDeleteReservation } = useReservation();
     const { user } = useContext(AuthContext);
     const { useProfile, profile } = useAuth();
+
+    useEffect(function () {
+        if(localStorage.getItem('type_list') !== null) {
+            setTypeList(2);
+        }    
+    }, []);
+    
 
     useEffect(function () {
         useProfile(id);
         useReservationByUser();
     }, []);
 
-    console.log(reservations);
-
-    const navigate = useNavigate();
-
     const handleclickdelete = (id) => {
-      useDeleteReservation(id);
+        useDeleteReservation(id);
     }
 
     const handleItemClick = (type) => {

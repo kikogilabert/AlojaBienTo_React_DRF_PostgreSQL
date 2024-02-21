@@ -1,14 +1,15 @@
-import {React, useState } from 'react';
+import { React, useState } from 'react';
 import { useCities } from '../../../hooks/useCities';
 import { useNavigate } from "react-router-dom";
 import CitiesModal from '../../../components/Admin/Cities/CitiesModal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import Table from 'react-bootstrap/Table';
 import { useEffect } from 'react';
 
 export function ListCities() {
-  const {cities, useDeleteCity, useUpdateCity, oneCity , useOneCity} = useCities();
+  const { cities, useDeleteCity, useUpdateCity, oneCity, useOneCity } = useCities();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -38,16 +39,15 @@ export function ListCities() {
 
   // get data of updating city
   useEffect(() => {
-    if(id !== null){
+    if (id !== null) {
       useOneCity(id);
     }
   }, [id, useOneCity]);
 
   return (
     <div>
-            <h1>List of Cities</h1>
-      <div style={{ marginLeft: '20px',  display: 'flex', justifyContent: 'center' }}>
-        <table className="table" style={{ border: '1px black solid' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop:'10px' }}>
+        <Table striped bordered hover responsive >
           <thead>
             <tr >
               <th scope="col">Name</th>
@@ -59,21 +59,21 @@ export function ListCities() {
             </tr>
           </thead>
           <tbody>
-          {cities.map((city, index) => (
-            <tr  key={index}>
-              <td>{city.name}</td>
-              <td>{city.state}</td>
-              <td>{city.country}</td>
-              <td>{city.image}</td>
-              <td><button className="btn btn-danger" onClick={() => deleteCity(city.slug)}>DELETE</button></td>
-              <td><button className="btn btn-primary" onClick={() => updateCity(city.slug)}>UPDATE</button></td>
-            </tr>
-          ))}
+            {cities.map((city, index) => (
+              <tr key={index}>
+                <td>{city.name}</td>
+                <td>{city.state}</td>
+                <td>{city.country}</td>
+                <td>{city.image}</td>
+                <td><button className="btn btn-danger" onClick={() => deleteCity(city.slug)}>DELETE</button></td>
+                <td><button className="btn btn-primary" onClick={() => updateCity(city.slug)}>UPDATE</button></td>
+              </tr>
+            ))}
           </tbody>
-        </table>
+        </Table>
       </div>
-      <CitiesModal updatedCity={oneCity} onAddCity={emit_data} show={show} handleClose={handleClose}/>
-      
+      <CitiesModal updatedCity={oneCity} onAddCity={emit_data} show={show} handleClose={handleClose} />
+
     </div>
   );
 };

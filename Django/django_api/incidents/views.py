@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from rest_framework.permissions import (IsAuthenticated, AllowAny)
 from users.core.permissions import IsAdmin
-from .models import IncidenceApartment
+from .models import IncidenceApartment, Notification
 from .serializers import IncidenceApartmentSerializer
 from .serializers import NotificationSerializer
 
@@ -59,7 +59,7 @@ class NotificationsView(viewsets.GenericViewSet):
         notifications_serializer = NotificationSerializer.countNotifications(request.user)
         return Response(notifications_serializer)
 
-    def seeNotification(self, request, id):
+    def Set_seen_Notification(self, request, id):
         serializer_context = { 'username': request.user, 'id': id }
         serializer = NotificationSerializer.seeNotification(context=serializer_context)
         return Response(NotificationSerializer.to_notification(serializer))

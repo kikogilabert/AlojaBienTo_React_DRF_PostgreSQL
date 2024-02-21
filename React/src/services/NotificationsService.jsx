@@ -18,6 +18,10 @@ const NotificationsService = {
         return api().get(`/count_notifications`);
     },
 
+    see_notification(id) {
+        return api().put(`/notifications/${id}`);
+    }
+
 };
 
 export default NotificationsService;

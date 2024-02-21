@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import ApartmentsModal from '../../../components/Admin/Apartments/ApartmentsModal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Table from 'react-bootstrap/Table';
 import Modal from 'react-bootstrap/Modal';
 import { useEffect } from 'react';
 
@@ -44,10 +46,8 @@ export function ListApartments() {
 
   return (
     <div>
-          <br />
-          <br />
-      <div style={{ marginLeft: '20px',  display: 'flex', justifyContent: 'center' }}>
-        <table className="table" style={{ border: '1px black solid' }}>
+      <div style={{ marginTop: '10px',  display: 'flex', justifyContent: 'center' }}>
+      <Table striped bordered hover responsive >
           <thead>
             <tr >
               <th scope="col">Location</th>
@@ -76,7 +76,7 @@ export function ListApartments() {
             </tr>
           ))}
           </tbody>
-        </table>
+        </Table>
       </div>
       <ApartmentsModal updatedApartment={oneApartment} onAddApartment={emit_data} show={show} handleClose={handleClose}/>
     </div>

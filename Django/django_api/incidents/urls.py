@@ -11,10 +11,15 @@ urlpatterns = [
     path('apartment_incidence', IncidenceApartmentView.as_view({"post": "post"})),
 
     # NOTIFICATIONS
+    # NOT SEEN
     path('notifications', NotificationsView.as_view({"get": "getNotifications"})),
-    path('notifications/<int:id>', NotificationsView.as_view({"put": "seeNotification"})),
+    
+    # CHANGE STATE NOTIFICATION
+    path('notifications/<int:id>', NotificationsView.as_view({"put": "Set_seen_Notification"})),
+    
+    # SEEN NOTIFICATIONS
     path('seen_notifications', NotificationsView.as_view({"get": "Seen_Notification"})),
+
+    # COUNT NOTIFICATIONS
     path('count_notifications', NotificationsView.as_view({"get": "countNotifications"})),
-
-
 ]

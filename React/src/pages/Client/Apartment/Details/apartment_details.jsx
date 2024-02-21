@@ -30,34 +30,34 @@ export default function Apartment_details() {
     }, []);
 
     useEffect(() => {
-        useOneZoneByApartment( oneApartment.zone )
+        useOneZoneByApartment(oneApartment.zone)
     }, [oneApartment]);
 
     useEffect(() => {
-        useOneCityByZone( oneZoneByApartment.city )
+        useOneCityByZone(oneZoneByApartment.city)
     }, [oneZoneByApartment]);
 
     const ManageReservation = () => {
-        if(isAuth){
+        if (isAuth) {
             handleShow();
         }
-        else{
+        else {
             console.log("No estas logueado");
             // toast("Wow so easy!");
             // <ToastContainer />
             setTimeout(() => {
-            navigate('/login');
+                navigate('/login');
             }, 2000);
         }
     }
 
     const emit_data = (dates) => {
-        useReservationApartment({ f_ini: dates.formattedStart, f_end: dates.formattedEnd ,apartment_id: oneApartment.id});        
+        useReservationApartment({ f_ini: dates.formattedStart, f_end: dates.formattedEnd, apartment_id: oneApartment.id });
     }
 
     return (
         <>
-            <br/><br/><br /><br/><br/>
+            <br /><br /><br /><br /><br />
             <div className={apartmentdetails.ajustar}>
                 <div className="row">
                     <div className={`col-md-6 ${apartmentdetails.carouselContainer}`}>
@@ -100,7 +100,7 @@ export default function Apartment_details() {
                                     </tr>
                                     <tr>
                                         <th>Número de baños :</th>
-                                        <td>{ oneApartment.bathrooms }</td>
+                                        <td>{oneApartment.bathrooms}</td>
                                     </tr>
                                     <tr>
                                         <th>Número de habitaciones :</th>
@@ -110,8 +110,8 @@ export default function Apartment_details() {
                             </table>
                             <div className={apartmentdetails.buttonContainer}>
                                 <button className="btn btn-primary" onClick={ManageReservation}>Reservar</button>
-                                <DatePickerModal show={show} handleClose={handleClose} onAddRevervation={emit_data}/>
-                            </div> 
+                                <DatePickerModal show={show} handleClose={handleClose} onAddRevervation={emit_data} />
+                            </div>
                         </div>
                     </div>
                 </div>

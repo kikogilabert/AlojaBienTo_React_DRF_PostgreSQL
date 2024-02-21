@@ -12,11 +12,51 @@
     font-size: 0.8rem;
     font-weight: bold;
     transform: translate(45%, -35%);
+    z-index: 1;
+}
+
+.count:hover .count2:hover{
+    cursor: pointer;
+}
+
+.count2 {
+    position: absolute;
+    justify-content: center;
+    top: 14px;
+    right: 10px;
+    background-color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    border-radius: 20%;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 1px;    
+    padding-top: 1px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    transform: translate(25%, -35%);
     /* transition: transform 0.3s; */
     z-index: 1;
 }
 
-.-count:hover{
+.viewmore{
+    color: cornflowerblue;
+    cursor:pointer;
+    margin-left: 10px;
+}
+
+.checkbutton{
+    background-color: rgb(85, 255, 6);
+    margin-left: 30px;
+    border: none;
+    color: black;
+    padding: 3px 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
-    /* transform: scale(1.2); */
+    border-radius: 12px;
+    transition-duration: 0.4s;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }

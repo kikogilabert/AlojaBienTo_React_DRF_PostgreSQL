@@ -13,7 +13,6 @@ import Zone_Cli from '../pages/Client/Zone/Zone'
 //ADMIN-Zones
 import Zone from '../pages/Admin/Zones/zone';
 
-
 //CLIENT-Apartments
 import Apartment_Cli from '../pages/Client/Apartment/apartment.jsx'
 //ADMIN-Apartments
@@ -23,6 +22,9 @@ import Apartment from '../pages/Admin/Apartment/apartment.jsx';
 import Reservations from '../pages/Admin/Reservation/reservation.jsx';
 //LOGIN
 import Login from '../pages/Login/login_register';
+
+//ADMIN-Incidences  
+import Incidence from '../pages/Admin/Incidence/incident.jsx';
 
 //DETAILS_APARTMENT
 import Apartment_details from '../pages/Client/Apartment/Details/apartment_details.jsx'
@@ -49,6 +51,9 @@ export function AppRouter() {
             <Route index path="/" element={ <Navigate to="/home" /> } />
             <Route path="/home" element={ <Home /> } />
 
+              {/* Login */}
+              <Route path="/login" element={ <Login /> } />
+
             {/* Client */}
             <Route path="/cities" element={ <City_Cli /> } />
             <Route path='/zones' element={ <Zone_Cli/>} />
@@ -63,10 +68,9 @@ export function AppRouter() {
               <Route path="/admin-zones" element={ <Zone /> } />
               <Route path='/admin-apartments' element={ <Apartment /> } />
               <Route path='/admin-reservations' element={ <Reservations /> } />
-            </Route>
+              <Route path='/admin-incidents' element={ <Incidence /> } />
 
-            {/* Login */}
-            <Route path="/login" element={ <Login /> } />
+            </Route>
             
             {/* Profile */}
             <Route element={<AuthGuard/>}>

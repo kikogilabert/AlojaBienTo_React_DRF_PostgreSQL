@@ -5,6 +5,8 @@ import { useApartments } from '../../../hooks/useApartments';
 import ApartmentService from "../../../services/ApartmentService";
 import Button from 'react-bootstrap/Button';
 import ApartmentsModal from '../../../components/Admin/Apartments/ApartmentsModal';
+import Toast from 'react-bootstrap/Toast';
+
 
 
 export default function admin_apartment() {
@@ -31,8 +33,8 @@ export default function admin_apartment() {
     }
 
     return (
-        <div>
-            <br></br><br></br><br></br><br></br>
+        <div style={{ marginLeft: '20px', marginRight: '20px', marginTop: '80px' }}>
+            <h1>List Aparments</h1>
             <Button variant="success" onClick={handleShow}>
             Create
             </Button>
