@@ -1,10 +1,21 @@
 import { useEffect, useCallback, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import IncidenceService from "../services/IncidenceService";
-// import { toast } from 'react-toastify';
-import { Toaster, toast } from "sonner";
 
 export function useIncidence() {
+
+        const [incidents, setIncidents] = useState([]);
+    
+        // useEffect(() => {
+        //     IncidenceService.getIncidents()
+        //         .then(({ data, status }) => {
+        //             if (status === 200) {
+        //                 setIncidents(data);
+        //             }
+        //         })
+        //         .catch(e => console.error(e));
+        // }, []);
+    
 
     //CREATE AN INCIDENCE
     const useCreateIncidence = (info) => {
@@ -12,14 +23,11 @@ export function useIncidence() {
         IncidenceService.CreateIncidence(info)
             .then(({ data, status }) => {
                 if (status === 200) {
-                    console.log(data);
-                    // console.log(status);
-                    <Toaster position="top-right" richColors/>;
-                    toast.success('Event has been Incident received, we will solve it as soon as possible.');
+                    // console.log(data);
                 }
             })
             .catch(e => console.error(e));
     };
 
-    return { useCreateIncidence }
+    return { useCreateIncidence, incidents, setIncidents };
 }
