@@ -56,7 +56,7 @@ const handleSubmit = (e) => {
     // console.log(location,price,rooms,bathrooms,size,apartment_images,zone);    
     if(isUpdate === true){
         // console.log(location,price,rooms,bathrooms,size,apartment_images,zone);    
-        console.log("isUpdate");
+        // console.log("isUpdate");
         onAddApartment({ location, price, rooms, bathrooms, size, apartment_images, zone }, updatedApartment.slug);
     }else{
         onAddApartment({ location, price, rooms, bathrooms, size, apartment_images, zone });

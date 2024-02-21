@@ -26,13 +26,13 @@ export function ListCities() {
 
   //send new data to backend
   const emit_data = (cityData) => {
-    console.log(cityData);
+    // console.log(cityData);
     useUpdateCity(id, cityData);
   }
 
   //activate modal
   function updateCity(slug) {
-    console.log(slug);
+    // console.log(slug);
     setId(slug);
     handleShow();
   }

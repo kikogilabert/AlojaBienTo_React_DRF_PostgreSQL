@@ -4,6 +4,7 @@ from .views import IncidenceApartmentView, IncidentsAdminView, NotificationsView
 urlpatterns = [
     # ADMIN
     path('apartment_incidents', IncidentsAdminView.as_view({"get": "getAllIncidents"})),
+    # UPDATE STATUS INCIDENCE
     path('apartment_incident/<str:id>', IncidentsAdminView.as_view({"put": "updateIncidence"})),
     path('apartment_incident/<str:id>', IncidentsAdminView.as_view({"delete": "delete"})),
 
