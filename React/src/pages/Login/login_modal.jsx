@@ -98,7 +98,12 @@ function LoginModal({show, handleClose, onAddUser, onLoginUser}){
           Close
         </Button>
         <Button variant="primary" onClick={handleSubmit}>
-          Save Changes
+          {form_type === 'login' && (
+            <span>Log In</span>
+          )}
+          {form_type === 'register' && (
+            <span>Register</span>
+          )}
         </Button>
       </Modal.Footer>
     </Modal>

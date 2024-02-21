@@ -44,7 +44,7 @@ function CitiesModal({ onAddCity, show, handleClose, updatedCity}) {
   const handleSubmit = (e) => {
         // console.log(name, state, country, image);    
     if(isUpdate === true){
-            console.log("isUpdate");
+            // console.log("isUpdate");
             onAddCity({ name, state, country, image }, updatedCity.id);
         }else{
             onAddCity({ name, state, country, image });
@@ -58,7 +58,7 @@ function CitiesModal({ onAddCity, show, handleClose, updatedCity}) {
 
   const handleStateChange = (e) => {
     setState(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   const handleImageChange = (e) => {

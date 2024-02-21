@@ -56,16 +56,13 @@ const NotificationBell = () => {
                         {notSeenNotifications.length > 0 && notSeenNotifications.map((notification, index) => (
                             <Popover.Body key={index} className={NotificationBellCSS.notification_body}>
                                 <strong>{notification.desc}</strong>
-                                <Tooltip id='tooltip-left' >
-                                    Hola
-                                </Tooltip>
+                                <br />
                                 <OverlayTrigger key={'left'} placement={'left'}
                                     overlay={
                                         <Tooltip id='tooltip-button'>
                                             Mark as seen
                                         </Tooltip>
                                     }>
-                                    
                                     <button onClick={() => handleSetSeenNotification(notification.id)} className={NotificationBellCSS.checkbutton}><FontAwesomeIcon icon={faCheck} /></button>
                                 </OverlayTrigger>
                                 <small className={NotificationBellCSS.viewmore} onClick={handleRedirect}>View more info</small>
