@@ -1,6 +1,7 @@
 import React from 'react';
 import FooterCSS from  './Footer.module.css';
 import { useNavigate } from "react-router-dom";
+import github from '../../assets/github-color.svg';
 
 export default function Header() {
     const navigate = useNavigate();
@@ -59,8 +60,8 @@ export default function Header() {
         <div className={`${FooterCSS.col} ${FooterCSS.social}`}>
           <h1>Social</h1>
           <ul>
-            <li><h6>Kiko Gilabert</h6><a href="https://github.com/kikogilabert"><img src="../../assets/github-color"/></a></li>
-            <li><h6>Alberto Gómez</h6><a href="https://github.com/albertogomezz"><img src="../../../../assets/logo/github-color-svgrepo-com.svg" width="32"/></a></li>
+            <li><h6>Kiko Gilabert</h6><a href="https://github.com/kikogilabert"><img src={github} width="32" /></a></li>
+            <li><h6>Alberto Gómez</h6><a href="https://github.com/albertogomezz"><img src={github} width="32"/></a></li>
           </ul>
         </div>
       <div className={FooterCSS.clearfix}></div>
